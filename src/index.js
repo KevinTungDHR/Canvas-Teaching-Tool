@@ -10,7 +10,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     theme: "dracula",
     lineNumbers: true,
   });
-  cm.setSize(500, 500);
   const iframe = document.querySelector(".render-view");
 
   const editor = new Editor({editor: cm, iframe: iframe});
