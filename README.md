@@ -60,3 +60,5 @@ In addition, this project will include:
   * Adding intermediate, and advanced levels to show more complex Canvas concepts.
   * Having tabs in the Code Editor to show the underyling HTML and CSS of the canvas elements.
   * Create draggable canvas elements.
+  * Hover over elements to provide tool tips
+  * Animated demos to provide examples of how Canvas elements work.
