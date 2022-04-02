@@ -14,7 +14,8 @@
     <main class="main">
       <div class="text-editor-group">
         <textarea name="" id="codemirror"></textarea>
-        <iframe class="render-view" srcdoc="" frameborder="0">Sorry Iframe not supported</iframe>
+        <div class="iframe-container"></div>
+        <iframe class="render-view" style="visibility:hidden;" onload="this.style.visibility = 'visible';" srcdoc="" frameborder="0">Sorry Iframe not supported</iframe>
       </div>
     </main>
 </body>
