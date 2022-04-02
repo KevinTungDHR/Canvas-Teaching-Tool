@@ -1,18 +1,18 @@
 export default class Editor{
-  constructor({editor: el, iframe: iframe }){
+  constructor({editor: el, view: view }){
     this.el = el;
-    this.iframe = iframe;
-    // this.output = `<script>${this.el.getValue()}</script>`;
+    this.view = view;
     this.handleInput = this.handleInput.bind(this);
     this.el.on("keyup", this.handleInput);
   }
 
   handleInput(event){
     // Wrap everything in an anonymous function so that you can redeclare variables
+    // Need to find a fix for global variables
     const value = `(() => {${this.el.getValue()}})()`;
     const script = { type: 'script', value };
-    this.iframe.contentWindow.postMessage(script, '*');
-    console.log("hello")
+
+    this.view.updateContent(script);
   }
 }
 
