@@ -1,6 +1,7 @@
 import CodeMirror from 'codemirror';
 import "codemirror/mode/javascript/javascript.js";
 import Editor from './scripts/editor';
+import Game from './scripts/game';
 import View from './scripts/view';
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -9,18 +10,38 @@ window.addEventListener("DOMContentLoaded", (event) => {
     theme: "dracula",
     lineNumbers: true,
   });
+
   const iframe = document.querySelector(".render-view");
+  iframe.width = "500px";
+  iframe.height = "500px";
+
   iframe.srcdoc = `
       <html>
         <head>
-     
+          <script>
+            let styleSheet = document.querySelector("#canvas-style")
+            if(styleSheet){
+              document.head.removeChild(styleSheet)
+            }
+
+            let setupSheet = document.createElement("link");
+            setupSheet.href = "./dist/main.css";
+            setupSheet.rel = "stylesheet";
+            setupSheet.type = "text/css";
+            setupSheet.class = "canvas-style";
+
+            document.head.appendChild(setupSheet);
+          </script>
           <script type='module' defer>
             window.addEventListener('message', (event) => {
               const { type, value } = event.data;
-              console.log("in event listener");
+
               if (type === 'html'){
-                console.log('in html listener');
                 document.body.innerHTML = value;
+              }
+
+              if (type === 'css'){
+                
               }
 
               if (type === 'setupScript'){
@@ -57,8 +78,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         </body>
       </html>
   `
-  const view = new View({renderView: iframe});
-  const editor = new Editor({editor: cm, view: view});
+  const game = new Game({iframe: iframe, codemirror: cm});
 });
 
 
