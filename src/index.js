@@ -12,8 +12,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 
   const iframe = document.querySelector(".render-view");
-  iframe.width = "500px";
-  iframe.height = "500px";
 
   iframe.srcdoc = `
       <html>
@@ -40,10 +38,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 document.body.innerHTML = value;
               }
 
-              if (type === 'css'){
-                
-              }
-
               if (type === 'setupScript'){
                 // Need to clear or else old functions leave the canvas in wrong state.
                 let canvas = document.querySelector("#canvas");
@@ -52,6 +46,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 if(setupScript){
                   document.body.removeChild(userScript);
                 }
+                
+
                 setupScript = document.createElement("script");
                 setupScript.className = "setup-script";
                 setupScript.innerHTML = value;

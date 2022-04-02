@@ -1,0 +1,9 @@
+.render-view {
+  width: 700px;
+  height: 500px,
+}
+
+#canvas {
+  width: 700px;
+  height: 500px;
+}

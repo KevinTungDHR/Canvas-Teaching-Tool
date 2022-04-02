@@ -1,7 +1,7 @@
 export default class View {
   constructor({defaults: defaults, renderView: renderView}){
-    this.defaultBody = "<canvas id='canvas' width='500' height='500'></canvas>";
-    this.defaultJS = "<script><script>";
+    this.defaultBody = "<canvas id='canvas'></canvas>";
+    this.defaultJS = defaults.setup;
     this.renderView = renderView;
     this.setupView = this.setupView.bind(this);
     this.renderView.addEventListener("load", this.setupView);
