@@ -6,13 +6,13 @@ export default class Editor{
     this.cm.on("keyup", this.handleInput);
   }
 
-  handleInput(event){
-    // Wrap everything in an anonymous function so that you can redeclare variables
-    // Need to find a fix for global variables
-    const value = `(() => {${this.cm.getValue()}})()`;
-    const script = { type: 'script', value };
+  setView(view){
+    this.view = view;
+  }
 
-    this.view.updateContent(script);
+  handleInput(event){
+    const codeMirrorInput = this.cm.getValue();
+    this.view.updateContent(codeMirrorInput);
   }
 }
 

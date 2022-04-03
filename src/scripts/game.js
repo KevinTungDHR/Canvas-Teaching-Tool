@@ -9,6 +9,7 @@ export default class Game{
     this.view = new View({renderView: iframe, level: this.level });
     this.editor = new Editor({editor: codemirror, view: this.view});
     this.bindHandlers();
+    this.addCheckCompletionListener()
     this.setup()
   }
 
@@ -65,8 +66,8 @@ export default class Game{
   }
 
   loadLevel(){
-    this.view.level = this.level;
-    this.editor.view = this.view;
+    this.view.setLevel(this.level);
+    this.editor.setView(this.view);
     this.removeReadOnlyListener();
     this.clearEditor();
     this.setup()
@@ -84,7 +85,7 @@ export default class Game{
   checkCompletion(){
     const userInput = this.editor.cm.getValue();
     if(this.level.solution(userInput)){
-      return this.completeLevel()
+      this.completeLevel()
     }
   }
 }

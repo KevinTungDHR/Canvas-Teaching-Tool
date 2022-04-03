@@ -10,22 +10,39 @@ export default class View {
     this.renderView = renderView;
     this.setupView = this.setupView.bind(this);
     this.renderView.addEventListener("load", this.setupView);
-    // BAD: Adding a new event listener everytime we change levels
+    // Avoid adding event listener everytime we change levels
   }
-  
+
+  setLevel(level){
+    this.level = level;
+  }
   // need to update iframe to reflect code editor
   setupView(){
-    let htmlContent = { type: "html", value: this.defaultBody }
-    this.renderView.contentWindow.postMessage(htmlContent, "*");
+    this.addHtmlContent();
+    this.addBackgroundCanvasContent();
+    this.addInitialCanvasContent();
+  }
+
+  addInitialCanvasContent(){
+    this.updateContent(this.level.setup.main)
+  }
+
+  // Wrap everything in an anonymous function so that you can redeclare variables
+  // Need to find a fix for global variables
+  addBackgroundCanvasContent(){
     const setupVal = `(() => {${this.level.setup.background}})()`
     let jsSetup = { type: "setupScript", value: setupVal }
     this.renderView.contentWindow.postMessage(jsSetup, "*");
-    const value = `(() => {${this.level.setup.main}})()`
-    const script = { type: 'script', value: value };
-    this.updateContent(script)
+  }
+
+  addHtmlContent(){
+    let htmlContent = { type: "html", value: this.defaultBody }
+    this.renderView.contentWindow.postMessage(htmlContent, "*");
   }
 
   updateContent(content){
-    this.renderView.contentWindow.postMessage(content, "*");
+    const value = `(() => {${content}})()`;
+    const script = { type: 'script', value };
+    this.renderView.contentWindow.postMessage(script, "*");
   }
 }
