@@ -5,7 +5,7 @@ import { levels } from './levels';
 export default class Game{
   constructor({iframe: iframe, codemirror: codemirror}){
     this.iframe = iframe;
-    this.level = levels[2];
+    this.level = levels[6];
     this.view = new View({renderView: iframe, level: this.level });
     this.editor = new Editor({editor: codemirror, view: this.view, game: this});
     this.bindHandlers();

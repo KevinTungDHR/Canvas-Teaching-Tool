@@ -7,6 +7,8 @@ canvas {
 }
 
 .render-view {
-  width: 700px;
-  height: 800px;
+  width: 50%;
+  height: 700px;
+  border: 1px solid black;
+
 }

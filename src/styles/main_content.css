@@ -1,5 +1,28 @@
+.body-main {
+  width: 80%;
+  margin: 0 auto;
+}
+.nav-bar-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-game-mode{
+  display: flex;
+}
+
+.nav-personal-links{
+  display: flex;
+}
+
+.nav-game-mode li, .nav-personal-links li{
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
+
+
 .instructions {
   display: block;
-  height: 200px;
+  height: 100px;
   width: 100%;
 }
