@@ -1,6 +1,6 @@
 export const levels = [
   {
-    currentLevel: 1,
+    currentLevel: 0,
     readOnlyLines: [0,1],
     setup: { 
       background:`
@@ -28,7 +28,7 @@ export const levels = [
     },
   },
   {
-    currentLevel: 2,
+    currentLevel: 1,
     readOnlyLines: [0,1],
     setup: { 
       background:`
@@ -60,7 +60,7 @@ export const levels = [
     },
   },
   {
-    currentLevel: 3,
+    currentLevel: 2,
     readOnlyLines: [0,1],
     setup: { 
       background:`
@@ -94,7 +94,7 @@ export const levels = [
     },
   },
   {
-    currentLevel: 4,
+    currentLevel: 3,
     readOnlyLines: [0,1],
     setup: { 
       background:`
@@ -128,7 +128,7 @@ export const levels = [
     },
   },
   {
-    currentLevel: 5,
+    currentLevel: 4,
     readOnlyLines: [0,1],
     setup: { 
       background:`
@@ -167,7 +167,7 @@ export const levels = [
     },
   },
   {
-    currentLevel: 6,
+    currentLevel: 5,
     readOnlyLines: [0,3],
     setup: { 
       background:`
@@ -198,7 +198,7 @@ export const levels = [
     },
   },
   {
-    currentLevel: 7,
+    currentLevel: 6,
     readOnlyLines: [0,3],
     setup: { 
       background:`

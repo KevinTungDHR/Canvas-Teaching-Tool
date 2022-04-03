@@ -474,6 +474,10 @@ span.CodeMirror-selectedtext { background: none; }
   height: 100px;
   width: 100%;
 }
+
+.level-counter span:hover {
+  cursor: pointer;
+}
 /*!*****************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/editor.css ***!
   \*****************************************************************************************************/

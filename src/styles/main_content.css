@@ -26,3 +26,7 @@
   height: 100px;
   width: 100%;
 }
+
+.level-counter span:hover {
+  cursor: pointer;
+}

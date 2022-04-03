@@ -5,7 +5,7 @@ import { levels } from './levels';
 export default class Game{
   constructor({iframe: iframe, codemirror: codemirror}){
     this.iframe = iframe;
-    this.level = levels[6];
+    this.level = this.getSavedlevel() || levels[0];
     this.view = new View({renderView: iframe, level: this.level });
     this.editor = new Editor({editor: codemirror, view: this.view, game: this});
     this.bindHandlers();
@@ -13,15 +13,28 @@ export default class Game{
     this.addCheckCompletionListener()
   }
 
+  getSavedlevel(){
+    const savedLevel = localStorage.getItem("level");
+
+    if (savedLevel){
+      let currentLevel = JSON.parse(savedLevel);
+      return levels[currentLevel];
+    }
+    return undefined;
+  }
+
   bindHandlers(){
-    this.setup.bind(this);
+    this.setup = this.setup.bind(this);
     this.checkCompletion = this.checkCompletion.bind(this);
+    this.goPreviousLevel = this.goPreviousLevel.bind(this);
+    this.goNextLevel = this.goNextLevel.bind(this);
   }
 
   setup(){
     this.editor.setMinEditorLines();
     this.editor.prefillEditor(this.level);
     this.editor.addReadOnlyListener();
+    this.addLevelSelectListeners()
     this.loadInstructions();
   }
 
@@ -36,10 +49,38 @@ export default class Game{
     this.loadLevel()
   }
 
+  addLevelSelectListeners(){
+    const backButton = document.querySelector(".back-level");
+    const nextButton = document.querySelector(".next-level");
+    backButton.addEventListener('click', this.goPreviousLevel)
+    nextButton.addEventListener('click', this.goNextLevel)
+  }
+
+  goPreviousLevel(e){
+    e.stopPropagation();
+    if (this.level.currentLevel === 0){
+      return;
+    }
+
+    let prevLevel = this.level.currentLevel - 1
+    this.level = levels[prevLevel];
+    this.loadLevel()
+  }
+
+  goNextLevel(e){
+    e.stopPropagation();
+    if (this.level.currentLevel + 1 === levels.length){
+      return;
+    }
+
+    this.completeLevel();
+  }
+
   loadLevel(){
     this.resetEditorAndView();
     this.setup()
     this.view.setupView();
+    localStorage.setItem("level", JSON.stringify(this.level.currentLevel))
   }
 
   resetEditorAndView(){
