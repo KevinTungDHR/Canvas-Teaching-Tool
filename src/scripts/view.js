@@ -23,8 +23,9 @@ export default class View {
     this.addInitialCanvasContent();
   }
 
-  addInitialCanvasContent(){
-    this.updateContent(this.level.setup.main)
+  addHtmlContent(){
+    let htmlContent = { type: "html", value: this.defaultBody }
+    this.renderView.contentWindow.postMessage(htmlContent, "*");
   }
 
   // Wrap everything in an anonymous function so that you can redeclare variables
@@ -35,9 +36,8 @@ export default class View {
     this.renderView.contentWindow.postMessage(jsSetup, "*");
   }
 
-  addHtmlContent(){
-    let htmlContent = { type: "html", value: this.defaultBody }
-    this.renderView.contentWindow.postMessage(htmlContent, "*");
+  addInitialCanvasContent(){
+    this.updateContent(this.level.setup.main)
   }
 
   updateContent(content){

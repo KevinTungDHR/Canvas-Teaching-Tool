@@ -7,51 +7,26 @@ export default class Game{
     this.iframe = iframe;
     this.level = levels[0];
     this.view = new View({renderView: iframe, level: this.level });
-    this.editor = new Editor({editor: codemirror, view: this.view});
+    this.editor = new Editor({editor: codemirror, view: this.view, game: this});
     this.bindHandlers();
-    this.addCheckCompletionListener()
     this.setup()
+    this.addCheckCompletionListener()
+  }
+
+  currentLevel(){
+    return this.level;
   }
 
   bindHandlers(){
-    this.readOnlyHandler = this.readOnlyHandler.bind(this)
-    this.checkCompletion = this.checkCompletion.bind(this);
     this.setup.bind(this);
+    this.checkCompletion = this.checkCompletion.bind(this);
   }
 
   setup(){
-    this.setMinEditorLines();
-    this.prefillEditor();
-    this.addReadOnlyListener();
+    this.editor.setMinEditorLines();
+    this.editor.prefillEditor(this.level);
+    this.editor.addReadOnlyListener();
     this.loadInstructions();
-  }
-
-  setMinEditorLines(){
-    const minLines = 10;
-    let startingValue = "";
-    for(let i = 0; i < minLines; i++){
-      startingValue += "\n";
-    }
-    this.editor.cm.setValue(startingValue);
-  }
-
-  prefillEditor(){
-    let doc = this.editor.cm.getDoc();
-    doc.replaceRange(this.level.setup.main, {line: 0, ch: 0})
-  }
-
-  addReadOnlyListener(){
-    this.editor.cm.on('beforeChange', this.readOnlyHandler)
-  }
-
-  removeReadOnlyListener(){
-    this.editor.cm.off('beforeChange', this.readOnlyHandler);
-  }
-
-  readOnlyHandler(cm, change){
-    if (this.level.readOnlyLines.indexOf(change.from.line) !== -1){
-      change.cancel();
-    }
   }
 
   loadInstructions(){
@@ -66,16 +41,16 @@ export default class Game{
   }
 
   loadLevel(){
-    this.view.setLevel(this.level);
-    this.editor.setView(this.view);
-    this.removeReadOnlyListener();
-    this.clearEditor();
+    this.resetEditorAndView();
     this.setup()
     this.view.setupView();
   }
 
-  clearEditor(){
-    this.editor.cm.setValue("");
+  resetEditorAndView(){
+    this.view.setLevel(this.level);
+    this.editor.setView(this.view);
+    this.editor.removeReadOnlyListener();
+    this.editor.clearEditor();
   }
 
   addCheckCompletionListener(){
@@ -84,8 +59,8 @@ export default class Game{
 
   checkCompletion(){
     const userInput = this.editor.cm.getValue();
-    if(this.level.solution(userInput)){
-      this.completeLevel()
+    if (this.level.solution(userInput)){
+      this.completeLevel();
     }
   }
 }

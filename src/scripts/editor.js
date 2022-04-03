@@ -1,13 +1,51 @@
 export default class Editor{
-  constructor({editor: cm, view: view }){
+  constructor({editor: cm, view: view, game: game }){
+    this.game = game;
     this.cm = cm;
     this.view = view;
-    this.handleInput = this.handleInput.bind(this);
+    this.bindHandlers();
     this.cm.on("keyup", this.handleInput);
   }
 
   setView(view){
     this.view = view;
+  }
+
+  bindHandlers(){
+    this.readOnlyHandler = this.readOnlyHandler.bind(this)
+    this.handleInput = this.handleInput.bind(this);
+  }
+
+  clearEditor(){
+    this.cm.setValue("");
+  }
+
+  setMinEditorLines(){
+    const minLines = 10;
+    let startingValue = "";
+    for(let i = 0; i < minLines; i++){
+      startingValue += "\n";
+    }
+    this.cm.setValue(startingValue);
+  }
+
+  prefillEditor(level){
+    let doc = this.cm.getDoc();
+    doc.replaceRange(level.setup.main, {line: 0, ch: 0})
+  }
+
+  addReadOnlyListener(){
+    this.cm.on('beforeChange', this.readOnlyHandler)
+  }
+
+  removeReadOnlyListener(){
+    this.cm.off('beforeChange', this.readOnlyHandler);
+  }
+
+  readOnlyHandler(cm, change){
+    if (this.game.currentLevel().readOnlyLines.indexOf(change.from.line) !== -1){
+      change.cancel();
+    }
   }
 
   handleInput(event){
