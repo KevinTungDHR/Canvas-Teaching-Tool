@@ -6,29 +6,45 @@ export default class Game{
   constructor({iframe: iframe, codemirror: codemirror}){
     this.iframe = iframe;
     this.level = levels[0];
-    this.initialSetup = this.level.setup
     this.view = new View({renderView: iframe, level: this.level });
     this.editor = new Editor({editor: codemirror, view: this.view});
-    this.checkCompletion = this.checkCompletion.bind(this);
     this.bindHandlers();
-    this.setup.bind(this);
     this.setup()
   }
 
+  bindHandlers(){
+    this.readOnlyHandler = this.readOnlyHandler.bind(this)
+    this.checkCompletion = this.checkCompletion.bind(this);
+    this.setup.bind(this);
+  }
 
-  // Need to change code editor setup for initial values
   setup(){
+    this.setMinEditorLines();
+    this.prefillEditor();
+    this.addReadOnlyListener();
+    this.loadInstructions();
+  }
+
+  setMinEditorLines(){
     const minLines = 10;
     let startingValue = "";
     for(let i = 0; i < minLines; i++){
       startingValue += "\n";
     }
-
     this.editor.cm.setValue(startingValue);
+  }
+
+  prefillEditor(){
     let doc = this.editor.cm.getDoc();
     doc.replaceRange(this.level.setup.main, {line: 0, ch: 0})
+  }
+
+  addReadOnlyListener(){
     this.editor.cm.on('beforeChange', this.readOnlyHandler)
-    this.loadInstructions();
+  }
+
+  removeReadOnlyListener(){
+    this.editor.cm.off('beforeChange', this.readOnlyHandler);
   }
 
   readOnlyHandler(cm, change){
@@ -42,11 +58,6 @@ export default class Game{
     instructionsElement.innerHTML = this.level.instructions;
   }
 
-  bindHandlers(){
-    this.editor.cm.on("keyup", this.checkCompletion)
-    this.readOnlyHandler = this.readOnlyHandler.bind(this)
-  }
-
   completeLevel(){
     let nextLevel = this.level.currentLevel + 1
     this.level = levels[nextLevel];
@@ -54,23 +65,26 @@ export default class Game{
   }
 
   loadLevel(){
-    this.initialSetup = this.level.setup;
     this.view.level = this.level;
     this.editor.view = this.view;
-    this.editor.cm.off('beforeChange', this.readOnlyHandler);
-    this.editor.cm.setValue("");
+    this.removeReadOnlyListener();
+    this.clearEditor();
     this.setup()
     this.view.setupView();
+  }
+
+  clearEditor(){
+    this.editor.cm.setValue("");
+  }
+
+  addCheckCompletionListener(){
+    this.editor.cm.on("keyup", this.checkCompletion)
   }
 
   checkCompletion(){
     const userInput = this.editor.cm.getValue();
     if(this.level.solution(userInput)){
-      this.completeLevel()
+      return this.completeLevel()
     }
-  }
-
-  reset(){
-    
   }
 }
