@@ -1,13 +1,16 @@
 export const levels = [
   {
+    currentLevel: 0,
+    readOnlyLines: [0,1],
     setup: { 
       background:`
         const canvas = document.getElementById('background');
           if (canvas.getContext) {
             var ctx = canvas.getContext('2d');
-            ctx.fillRect(25, 25, 100, 100);
-            ctx.clearRect(45, 45, 60, 60);
-            ctx.strokeRect(50, 50, 50, 50);
+            ctx.setLineDash([5]);
+            ctx.beginPath();
+            ctx.rect(100,100,200,200);
+            ctx.stroke();
           }
         `, 
       main: `let canvas = document.getElementById('canvas')\n\tlet ctx = canvas.getContext('2d')\n\tctx.fillRect(10, 10, 100, 100)`,
@@ -16,27 +19,78 @@ export const levels = [
     solution(userInput) {
       return /ctx.fillRect\(100,\s*100,\s*200,\s*200\)/.test(userInput)
     },
-    readOnlyLines: [0,1],
-    currentLevel: 0,
   },
   {
+    currentLevel: 1,
+    readOnlyLines: [],
     setup: { 
       background:`
-        const canvas = document.getElementById('background');
-          if (canvas.getContext) {
-            var ctx = canvas.getContext('2d');
-            ctx.fillRect(25, 25, 100, 100);
-            ctx.clearRect(45, 45, 60, 60);
-            ctx.strokeRect(50, 50, 50, 50);
-          }
+      
         `, 
       main: `let canvas = document.getElementById('canvas')\n\tlet ctx = canvas.getContext('2d')\n\tctx.fillRect(10, 10, 100, 100)`,
     },
-    instructions: 'LEVEL 2 YEA',
+    instructions: 'Adjust the width and height of the rectangle to cover the dotted zone',
     solution(userInput) {
       return /ctx.fillRect\(100,\s*100,\s*200,\s*200\)/.test(userInput)
     },
-    readOnlyLines: [0,1],
-  }
+  },
+  {
+    currentLevel: 2,
+    readOnlyLines: [],
+    setup: { 
+      background:`
+      
+        `, 
+      main: `let canvas = document.getElementById('canvas')\n\tlet ctx = canvas.getContext('2d')\n\tctx.fillRect(10, 10, 100, 100)`,
+    },
+    instructions: 'Adjust the width and height of the rectangle to cover the dotted zone',
+    solution(userInput) {
+      return /ctx.fillRect\(100,\s*100,\s*200,\s*200\)/.test(userInput)
+    },
+  },
+  {
+    currentLevel: 3,
+    readOnlyLines: [],
+    setup: { 
+      background:`
+      
+        `, 
+      main: `let canvas = document.getElementById('canvas')\n\tlet ctx = canvas.getContext('2d')\n\tctx.fillRect(10, 10, 100, 100)`,
+    },
+    instructions: 'Adjust the width and height of the rectangle to cover the dotted zone',
+    solution(userInput) {
+      return /ctx.fillRect\(100,\s*100,\s*200,\s*200\)/.test(userInput)
+    },
+  },
+  {
+    currentLevel: 4,
+    readOnlyLines: [],
+    setup: { 
+      background:`
+      
+        `, 
+      main: `let canvas = document.getElementById('canvas')\n\tlet ctx = canvas.getContext('2d')\n\tctx.fillRect(10, 10, 100, 100)`,
+    },
+    instructions: 'Adjust the width and height of the rectangle to cover the dotted zone',
+    solution(userInput) {
+      return /ctx.fillRect\(100,\s*100,\s*200,\s*200\)/.test(userInput)
+    },
+  },
+  {
+    currentLevel: 5,
+    readOnlyLines: [],
+    setup: { 
+      background:`
+      
+        `, 
+      main: `let canvas = document.getElementById('canvas')\n\tlet ctx = canvas.getContext('2d')\n\tctx.fillRect(10, 10, 100, 100)`,
+    },
+    instructions: 'Adjust the width and height of the rectangle to cover the dotted zone',
+    solution(userInput) {
+      return /ctx.fillRect\(100,\s*100,\s*200,\s*200\)/.test(userInput)
+    },
+  },
+  
+
 ]
 
