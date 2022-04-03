@@ -1,9 +1,7 @@
-.render-view {
-  width: 700px;
-  height: 500px,
+.canvas-container {
+  position: relative;
 }
 
-#canvas {
-  width: 700px;
-  height: 500px;
+canvas {
+  position: absolute;
 }

@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
               if (type === 'setupScript'){
                 // Need to clear or else old functions leave the canvas in wrong state.
-                let canvas = document.querySelector("#canvas");
+                let canvas = document.querySelector("#background");
                 canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
                 let setupScript = document.querySelector(".setup-script");
                 if(setupScript){
@@ -74,6 +74,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         </body>
       </html>
   `
+
   const game = new Game({iframe: iframe, codemirror: cm});
 });
 
