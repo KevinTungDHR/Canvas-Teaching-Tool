@@ -5,12 +5,18 @@ import Game from './scripts/game';
 import View from './scripts/view';
 
 window.addEventListener("DOMContentLoaded", (event) => {
+  const minLines = 10;
+  let startingValue = "";
+  for(let i = 0; i < minLines; i++){
+    startingValue += "\n";
+  }
   const cm = CodeMirror.fromTextArea(document.querySelector("#codemirror"), {
     mode: "javascript",
     theme: "dracula",
     lineNumbers: true,
   });
 
+  cm.setValue(startingValue);
   const iframe = document.querySelector(".render-view");
 
   iframe.srcdoc = `
@@ -47,7 +53,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   document.body.removeChild(userScript);
                 }
                 
-
+                console.log("setup Script")
                 setupScript = document.createElement("script");
                 setupScript.className = "setup-script";
                 setupScript.innerHTML = value;
@@ -66,6 +72,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 userScript.className = "user-script";
                 userScript.innerHTML = value;
                 document.body.appendChild(userScript);
+                console.log("IN SCRIPT")
               }
             })
           </script>

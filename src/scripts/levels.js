@@ -10,8 +10,10 @@ export const levels = [
       }
     `},
     instructions: null,
-    solution: /ctx.fillRect\(100,\s+100,\s+200,\s+200\)/,
-
+    solution(userInput) {
+      return /ctx.fillRect\(100,\s+100,\s+200,\s+200\)/.test(userInput)
+    },
+    readOnlyLines: [0,1],
   }
 
 ]
