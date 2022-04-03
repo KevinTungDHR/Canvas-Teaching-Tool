@@ -20,8 +20,12 @@ export default class Editor{
     this.cm.setValue("");
   }
 
+  numberOfReadOnlyLines(){
+    return this.game.level.readOnlyLines.length;
+  }
+
   setMinEditorLines(){
-    const minLines = 10;
+    const minLines = this.numberOfReadOnlyLines() + 3;
     let startingValue = "";
     for(let i = 0; i < minLines; i++){
       startingValue += "\n";
@@ -43,7 +47,7 @@ export default class Editor{
   }
 
   readOnlyHandler(cm, change){
-    if (this.game.currentLevel().readOnlyLines.indexOf(change.from.line) !== -1){
+    if (this.game.level.readOnlyLines.indexOf(change.from.line) !== -1){
       change.cancel();
     }
   }

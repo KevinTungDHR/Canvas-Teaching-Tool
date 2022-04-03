@@ -1,10 +1,9 @@
 export default class View {
   constructor({level: level, renderView: renderView}){
     this.defaultBody = `
-      <h1>hello</h1>
       <div class='canvas-container'>
-        <canvas id='canvas' height="500px" width="500px"></canvas>
-        <canvas id='background' height="500px" width="500px"></canvas>
+        <canvas id='canvas' height="700px" width="800px"></canvas>
+        <canvas id='background' height="700px" width="800px"></canvas>
       </div>`;
     this.level = level;
     this.renderView = renderView;

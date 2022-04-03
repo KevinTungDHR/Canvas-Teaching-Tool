@@ -8,6 +8,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const cm = CodeMirror.fromTextArea(document.querySelector("#codemirror"), {
     mode: "javascript",
     theme: "dracula",
+    tabSize: 2,
+    lineWrapping: true,
     lineNumbers: true,
   });
 
