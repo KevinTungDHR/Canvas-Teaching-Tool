@@ -1,32 +1,31 @@
 export default class View {
-  constructor({defaults: defaults, renderView: renderView}){
+  constructor({level: level, renderView: renderView}){
     this.defaultBody = `
+      <h1>hello</h1>
       <div class='canvas-container'>
-        <canvas id='canvas'></canvas>
-        <canvas id='background'></canvas>
+        <canvas id='canvas' height="500px" width="500px"></canvas>
+        <canvas id='background' height="500px" width="500px"></canvas>
       </div>`;
-    this.defaultJS = defaults.setup;
+    this.level = level;
     this.renderView = renderView;
     this.setupView = this.setupView.bind(this);
     this.renderView.addEventListener("load", this.setupView);
+    // BAD: Adding a new event listener everytime we change levels
   }
   
   // need to update iframe to reflect code editor
   setupView(){
     let htmlContent = { type: "html", value: this.defaultBody }
     this.renderView.contentWindow.postMessage(htmlContent, "*");
-    let jsSetup = { type: "setupScript", value: this.defaultJS.script }
+    const setupVal = `(() => {${this.level.setup.background}})()`
+    let jsSetup = { type: "setupScript", value: setupVal }
     this.renderView.contentWindow.postMessage(jsSetup, "*");
-    console.log("view setup")
-    const value = `(() => {let canvas = document.getElementById('canvas')
-    let ctx = canvas.getContext('2d')
-    ctx.fillRect(100, 100, 200, 200)})()`;
-    const script = { type: 'script', value };
+    const value = `(() => {${this.level.setup.main}})()`
+    const script = { type: 'script', value: value };
     this.updateContent(script)
   }
 
   updateContent(content){
     this.renderView.contentWindow.postMessage(content, "*");
-    console.log('updatecontent')
   }
 }

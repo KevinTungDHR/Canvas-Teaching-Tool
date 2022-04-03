@@ -443,6 +443,14 @@ span.CodeMirror-selectedtext { background: none; }
 .cm-s-dracula .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }
 .cm-s-dracula .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }
 
+/*!***********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/main_content.css ***!
+  \***********************************************************************************************************/
+.instructions {
+  display: block;
+  height: 200px;
+  width: 100%;
+}
 /*!*****************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/editor.css ***!
   \*****************************************************************************************************/
@@ -465,6 +473,11 @@ span.CodeMirror-selectedtext { background: none; }
 
 canvas {
   position: absolute;
+}
+
+.render-view {
+  width: 500px;
+  height: 500px;
 }
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!

@@ -5,18 +5,12 @@ import Game from './scripts/game';
 import View from './scripts/view';
 
 window.addEventListener("DOMContentLoaded", (event) => {
-  const minLines = 10;
-  let startingValue = "";
-  for(let i = 0; i < minLines; i++){
-    startingValue += "\n";
-  }
   const cm = CodeMirror.fromTextArea(document.querySelector("#codemirror"), {
     mode: "javascript",
     theme: "dracula",
     lineNumbers: true,
   });
 
-  cm.setValue(startingValue);
   const iframe = document.querySelector(".render-view");
 
   iframe.srcdoc = `
@@ -46,14 +40,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
               if (type === 'setupScript'){
                 // Need to clear or else old functions leave the canvas in wrong state.
-                let canvas = document.querySelector("#background");
-                canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+                let bg = document.querySelector("#background");
+                bg.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
                 let setupScript = document.querySelector(".setup-script");
                 if(setupScript){
-                  document.body.removeChild(userScript);
+                  document.body.removeChild(setupScript);
                 }
                 
-                console.log("setup Script")
                 setupScript = document.createElement("script");
                 setupScript.className = "setup-script";
                 setupScript.innerHTML = value;
@@ -72,7 +65,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 userScript.className = "user-script";
                 userScript.innerHTML = value;
                 document.body.appendChild(userScript);
-                console.log("IN SCRIPT")
               }
             })
           </script>
