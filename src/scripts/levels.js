@@ -19,7 +19,7 @@ export const levels = [
     solution(userInput) {
       const exp = /ctx.fillRect\((\d+)\s*,\s*(\d+)\s*,\s*150\s*,\s*150\s*\)/
       const matches = userInput.match(exp)
-      if (matches.length === 3){
+      if (matches && matches.length === 3){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
         return (x >= 340 && x <= 360 && y >= 190 && y <= 210);
@@ -51,7 +51,7 @@ export const levels = [
     solution(userInput) {
       const exp = /ctx.fillRect\(\s*160\s*,\s*110\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
       const matches = userInput.match(exp)
-      if (matches.length === 3){
+      if (matches && matches.length === 3){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
         return (x >= 270 && x <= 290 && y >= 270 && y <= 290);
@@ -83,7 +83,7 @@ export const levels = [
       }
       const exp = /ctx.fillRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
       const matches = userInput.match(exp)
-      if (matches.length === 5){
+      if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
         let width = parseInt(matches[3]);
@@ -117,7 +117,7 @@ export const levels = [
       }
       const exp = /ctx.fillRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
       const matches = userInput.match(exp)
-      if (matches.length === 5){
+      if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
         let width = parseInt(matches[3]);
@@ -155,7 +155,7 @@ export const levels = [
       }
       const exp = /ctx.strokeRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
       const matches = userInput.match(exp)
-      if (matches.length === 5){
+      if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
         let width = parseInt(matches[3]);
@@ -186,7 +186,7 @@ export const levels = [
     solution(userInput) {
       const exp = /ctx.clearRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
       const matches = userInput.match(exp)
-      if (matches.length === 5){
+      if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
         let width = parseInt(matches[3]);
@@ -233,7 +233,7 @@ export const levels = [
       // Need to work on solution
       const exp1 = /ctx.clearRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
       const matches = userInput.match(exp1)
-      if (matches.length === 5){
+      if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
         let width = parseInt(matches[3]);

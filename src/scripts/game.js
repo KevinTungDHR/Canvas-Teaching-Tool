@@ -1,6 +1,7 @@
 import Editor from "./editor";
 import View from "./view";
 import { levels } from './levels';
+import { debounce } from "./util";
 
 export default class Game{
   constructor({iframe: iframe, codemirror: codemirror}){
@@ -25,7 +26,7 @@ export default class Game{
 
   bindHandlers(){
     this.setup = this.setup.bind(this);
-    this.checkCompletion = this.checkCompletion.bind(this);
+    this.checkCompletion = debounce(this.checkCompletion.bind(this), 1000);
     this.goPreviousLevel = this.goPreviousLevel.bind(this);
     this.goNextLevel = this.goNextLevel.bind(this);
   }

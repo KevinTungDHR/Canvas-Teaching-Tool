@@ -1,3 +1,5 @@
+import { debounce } from "./util";
+
 export default class Editor{
   constructor({editor: cm, view: view, game: game }){
     this.game = game;
@@ -13,7 +15,8 @@ export default class Editor{
 
   bindHandlers(){
     this.readOnlyHandler = this.readOnlyHandler.bind(this)
-    this.handleInput = this.handleInput.bind(this);
+    // this.handleInput = this.handleInput.bind(this);
+    this.handleInput = debounce(this.handleInput.bind(this), 100)
   }
 
   clearEditor(){
@@ -51,6 +54,8 @@ export default class Editor{
       change.cancel();
     }
   }
+
+
 
   handleInput(event){
     const codeMirrorInput = this.cm.getValue();
