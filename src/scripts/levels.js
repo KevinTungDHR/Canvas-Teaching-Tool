@@ -119,6 +119,9 @@ export const levels = [
       if(!colorExp.test(userInput)){
         return false;
       }
+      if(/ctx.fillRect/.test(userInput)){
+        return false;
+      }
       const exp = /ctx.strokeRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
       const matches = userInput.match(exp);
       if (matches && matches.length === 5){
@@ -127,7 +130,7 @@ export const levels = [
         let width = parseInt(matches[3]);
         let height = parseInt(matches[4]);
         return (x >= 580 && x <= 600 && y >= 30 && y <= 80 &&
-           x + width >= 640 && y + height >= 90);
+           x + width >= 640 && y + height >= 90 && x + width <= 660 && y + height <= 110);
       }
       return false;
     },
@@ -339,6 +342,35 @@ export const levels = [
   },
   {
     currentLevel: 9,
+    readOnlyLines: [0, 1, 2],
+    setup: {
+      background: `
+      const canvas = document.getElementById('background');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.setLineDash([5]);
+          ctx.beginPath();
+          ctx.arc(300, 300, 100, 0, Math.PI / 2, true)
+          ctx.stroke();
+        }
+    `,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.beginPath()\nctx.arc(300, 300, 150, 0, 2 * Math.PI)\nctx.stroke()`,
+    },
+    instructions: 'There is one last optional argument to the context.arc() method which is a boolean that checks whether or not the arc is drawn counter-clockwise. Draw a counter-clockwise arc that matches the dotted curve (Keep the starting angle at 0).',
+    solution(userInput) {
+      const exp = /ctx.arc\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(.*),\s*(true)/;
+      const matches = userInput.match(exp);
+
+      if (matches) {
+        let startAng = parseInt(matches[4]);
+        let endAng = matches[5];
+        return (startAng === 0 && eval(endAng) === (Math.PI / 2));
+      }
+      return false;
+    },
+  },
+  {
+    currentLevel: 10,
     readOnlyLines: [0, 1, 2],
     setup: {
       background: `
