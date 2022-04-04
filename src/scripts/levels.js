@@ -17,8 +17,8 @@ export const levels = [
     },
     instructions: 'Change the x and y arguments of ctx.fillRect to position the rectangle onto the end zone',
     solution(userInput) {
-      const exp = /ctx.fillRect\((\d+)\s*,\s*(\d+)\s*,\s*150\s*,\s*150\s*\)/
-      const matches = userInput.match(exp)
+      const exp = /ctx.fillRect\((\d+)\s*,\s*(\d+)\s*,\s*150\s*,\s*150\s*\)/;
+      const matches = userInput.match(exp);
       if (matches && matches.length === 3){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
@@ -49,8 +49,8 @@ export const levels = [
     },
     instructions: 'Adjust the width and height of the rectangle so that the edges of the rectange are between the dotted lines. Don\'t change the position!',
     solution(userInput) {
-      const exp = /ctx.fillRect\(\s*160\s*,\s*110\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
-      const matches = userInput.match(exp)
+      const exp = /ctx.fillRect\(\s*160\s*,\s*110\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+      const matches = userInput.match(exp);
       if (matches && matches.length === 3){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
@@ -77,12 +77,12 @@ export const levels = [
     },
     instructions: 'Use the fillStyle() and fillRect() methods to create a blue rectangle within the dotted zone',
     solution(userInput) {
-      const colorExp = /ctx.fillStyle\s*=\s*["']blue["']/
+      const colorExp = /ctx.fillStyle\s*=\s*["']blue["']/;
       if(!colorExp.test(userInput)){
         return false;
       }
-      const exp = /ctx.fillRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
-      const matches = userInput.match(exp)
+      const exp = /ctx.fillRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+      const matches = userInput.match(exp);
       if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
@@ -111,12 +111,12 @@ export const levels = [
     },
     instructions: 'Use the fillStyle() and fillRect() methods on the context to create a blue rectangle within the dotted zone',
     solution(userInput) {
-      const colorExp = /ctx.fillStyle\s*=\s*["']blue["']/
+      const colorExp = /ctx.fillStyle\s*=\s*["']blue["']/;
       if(!colorExp.test(userInput)){
         return false;
       }
-      const exp = /ctx.fillRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
-      const matches = userInput.match(exp)
+      const exp = /ctx.fillRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+      const matches = userInput.match(exp);
       if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
@@ -149,12 +149,12 @@ export const levels = [
     },
     instructions: 'Use the strokeStyle and strokeRect() to create a rectangle with red stroke and no fill within the dotted zone and not touching the blue square',
     solution(userInput) {
-      const colorExp = /ctx.strokeStyle\s*=\s*["']red["']/
+      const colorExp = /ctx.strokeStyle\s*=\s*["']red["']/;
       if(!colorExp.test(userInput)){
         return false;
       }
-      const exp = /ctx.strokeRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
-      const matches = userInput.match(exp)
+      const exp = /ctx.strokeRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+      const matches = userInput.match(exp);
       if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
@@ -184,8 +184,8 @@ export const levels = [
     },
     instructions: 'Cut out a rectangle from the canvas using clearRect()',
     solution(userInput) {
-      const exp = /ctx.clearRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
-      const matches = userInput.match(exp)
+      const exp = /ctx.clearRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+      const matches = userInput.match(exp);
       if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
@@ -231,8 +231,8 @@ export const levels = [
     instructions: 'Use beginPath and closePath to draw three rectangles',
     solution(userInput) {
       // Need to work on solution
-      const exp1 = /ctx.clearRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/
-      const matches = userInput.match(exp1)
+      const exp1 = /ctx.clearRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+      const matches = userInput.match(exp1);
       if (matches && matches.length === 5){
         let x = parseInt(matches[1]);
         let y = parseInt(matches[2]);
@@ -246,5 +246,5 @@ export const levels = [
   },
   
 
-]
+];
 
