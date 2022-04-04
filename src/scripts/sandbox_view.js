@@ -19,20 +19,20 @@ export default class SandboxView {
   }
 
   addHtmlContent(){
-    let htmlContent = { type: "html", value: this.defaultBody }
+    let htmlContent = { type: "html", value: this.defaultBody };
     this.iframe.contentWindow.postMessage(htmlContent, "*");
   }
 
   // Wrap everything in an anonymous function so that you can redeclare variables
   // Need to find a fix for global variables
   addBackgroundCanvasContent(){
-    const setupVal = `(() => {})()`
-    let jsSetup = { type: "setupScript", value: setupVal }
+    const setupVal = `(() => {})()`;
+    let jsSetup = { type: "setupScript", value: setupVal };
     this.iframe.contentWindow.postMessage(jsSetup, "*");
   }
 
   addInitialCanvasContent(){
-    this.updateContent("")
+    this.updateContent("");
   }
 
   updateContent(content){

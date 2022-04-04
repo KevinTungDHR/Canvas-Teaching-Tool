@@ -10,8 +10,8 @@ export default class Game{
     this.view = new View({iframe: iframe, level: this.level });
     this.editor = new Editor({editor: codemirror, view: this.view, game: this});
     this.bindHandlers();
-    this.setup()
-    this.addCheckCompletionListener()
+    this.setup();
+    this.addCheckCompletionListener();
   }
 
   getSavedlevel(){
@@ -35,26 +35,30 @@ export default class Game{
     this.editor.setMinEditorLines();
     this.editor.prefillEditor(this.level);
     this.editor.addReadOnlyListener();
-    this.addLevelSelectListeners()
+    this.addLevelSelectListeners();
     this.loadInstructions();
   }
 
   loadInstructions(){
-    const instructionsElement = document.querySelector(".instructions")
+    const instructionsElement = document.querySelector(".instructions");
     instructionsElement.innerHTML = this.level.instructions;
   }
 
   completeLevel(){
-    let nextLevel = this.level.currentLevel + 1
-    this.level = levels[nextLevel];
-    this.loadLevel()
+    let nextLevel = this.level.currentLevel + 1;
+    if (!levels[nextLevel]){
+      alert("Last level reached!");
+    } else {
+      this.level = levels[nextLevel];
+      this.loadLevel();
+    }   
   }
 
   addLevelSelectListeners(){
     const backButton = document.querySelector(".back-level");
     const nextButton = document.querySelector(".next-level");
-    backButton.addEventListener('click', this.goPreviousLevel)
-    nextButton.addEventListener('click', this.goNextLevel)
+    backButton.addEventListener('click', this.goPreviousLevel);
+    nextButton.addEventListener('click', this.goNextLevel);
   }
 
   goPreviousLevel(e){
@@ -63,9 +67,9 @@ export default class Game{
       return;
     }
 
-    let prevLevel = this.level.currentLevel - 1
+    let prevLevel = this.level.currentLevel - 1;
     this.level = levels[prevLevel];
-    this.loadLevel()
+    this.loadLevel();
   }
 
   goNextLevel(e){
@@ -79,9 +83,9 @@ export default class Game{
 
   loadLevel(){
     this.resetEditorAndView();
-    this.setup()
+    this.setup();
     this.view.setupView();
-    localStorage.setItem("level", JSON.stringify(this.level.currentLevel))
+    localStorage.setItem("level", JSON.stringify(this.level.currentLevel));
   }
 
   resetEditorAndView(){
@@ -92,7 +96,7 @@ export default class Game{
   }
 
   addCheckCompletionListener(){
-    this.editor.cm.on("keyup", this.checkCompletion)
+    this.editor.cm.on("keyup", this.checkCompletion);
   }
 
   checkCompletion(){

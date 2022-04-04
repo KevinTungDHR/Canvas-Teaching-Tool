@@ -55,8 +55,6 @@ export default class Editor{
     }
   }
 
-
-
   handleInput(event){
     const codeMirrorInput = this.cm.getValue();
     this.view.updateContent(codeMirrorInput);
