@@ -14,10 +14,10 @@
     <main class="main">
       <nav class="nav-bar-container">
         <ul class="nav-game-mode">
-          <li>
+          <li class="tab" id="sandbox-tab">
             <a href="#">Sandbox</a>
           </li>
-          <li>
+          <li class="tab" id="game-tab">
             <a href="#">Game</a>
           </li>
           <li>
@@ -41,11 +41,17 @@
           <span class="next-level">next</span>
         </div>
       </div>
-      <div class="text-editor-group">
+      <div class="editor-game-group">
         <textarea name="" id="codemirror"></textarea>
         <div class="iframe-container">
         </div>
         <iframe class="render-view" frameborder="0">Sorry Iframe not supported</iframe>
+      </div>
+      <div class="sandbox-group hidden">
+        <textarea name="" id="codemirror-sandbox"></textarea>
+        <div class="iframe-container-sandbox">
+        </div>
+        <iframe class="render-view-sandbox" frameborder="0">Sorry Iframe not supported</iframe>
       </div>
     </main>
 </body>

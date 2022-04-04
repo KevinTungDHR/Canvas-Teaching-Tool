@@ -6,6 +6,14 @@
   font-size: 20px;
 }
 
-.text-editor-group {
+.editor-game-group {
   display: flex;
+}
+
+.sandbox-group {
+  display: flex;
+}
+
+.hidden {
+  display: none;
 }

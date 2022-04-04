@@ -6,9 +6,8 @@ canvas {
   position: absolute;
 }
 
-.render-view {
+.render-view, .render-view-sandbox {
   width: 50%;
   height: 700px;
   border: 1px solid black;
-
 }

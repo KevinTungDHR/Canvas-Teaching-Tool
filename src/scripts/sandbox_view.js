@@ -1,20 +1,16 @@
-export default class View {
-  constructor({level: level, iframe: iframe}){
+export default class SandboxView {
+  constructor({iframe: iframe}){
     this.defaultBody = `
       <div class='canvas-container'>
         <canvas id='canvas' height="700px" width="770px"></canvas>
         <canvas id='background' height="700px" width="770px"></canvas>
       </div>`;
-    this.level = level;
     this.iframe = iframe;
     this.setupView = this.setupView.bind(this);
     this.iframe.addEventListener("load", this.setupView);
     // Avoid adding event listener everytime we change levels
   }
 
-  setLevel(level){
-    this.level = level;
-  }
   // need to update iframe to reflect code editor
   setupView(){
     this.addHtmlContent();
@@ -30,13 +26,13 @@ export default class View {
   // Wrap everything in an anonymous function so that you can redeclare variables
   // Need to find a fix for global variables
   addBackgroundCanvasContent(){
-    const setupVal = `(() => {${this.level.setup.background}})()`
+    const setupVal = `(() => {})()`
     let jsSetup = { type: "setupScript", value: setupVal }
     this.iframe.contentWindow.postMessage(jsSetup, "*");
   }
 
   addInitialCanvasContent(){
-    this.updateContent(this.level.setup.main)
+    this.updateContent("")
   }
 
   updateContent(content){

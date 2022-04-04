@@ -6,7 +6,7 @@ export default class Game{
   constructor({iframe: iframe, codemirror: codemirror}){
     this.iframe = iframe;
     this.level = this.getSavedlevel() || levels[0];
-    this.view = new View({renderView: iframe, level: this.level });
+    this.view = new View({iframe: iframe, level: this.level });
     this.editor = new Editor({editor: codemirror, view: this.view, game: this});
     this.bindHandlers();
     this.setup()
