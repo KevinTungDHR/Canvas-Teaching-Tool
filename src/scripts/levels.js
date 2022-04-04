@@ -180,7 +180,7 @@ export const levels = [
           ctx.stroke();
         }
     `,  
-      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.fillStyle = "grey"\nctx.fillRect(0, 0, 800, 700)`,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.fillStyle = "grey"\nctx.fillRect(0, 0, 845, 700)`,
     },
     instructions: 'Cut out a rectangle from the canvas using clearRect()',
     solution(userInput) {
@@ -226,20 +226,54 @@ export const levels = [
           ctx.closePath()
         }
     `,  
-      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.fillStyle = "grey"\nctx.fillRect(0, 0, 800, 700)`,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.fillStyle = "grey"\nctx.fillRect(0, 0, 845, 700)`,
     },
-    instructions: 'Use beginPath and closePath to draw three rectangles',
+    instructions: 'Draw three rectangles within their zones:',
     solution(userInput) {
       // Need to work on solution
-      const exp1 = /ctx.clearRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
-      const matches = userInput.match(exp1);
-      if (matches && matches.length === 5){
-        let x = parseInt(matches[1]);
-        let y = parseInt(matches[2]);
-        let width = parseInt(matches[3]);
-        let height = parseInt(matches[4]);
-        return (x >= 300 && y >= 300 &&
-           x + width <= 400 && y + height <= 400);
+      if (!(/ctx.setLineDash/.test(userInput) && /ctx.fillStyle\s*=\s*["']green["']/)){
+        return false;
+      }
+
+      const exp1 = /ctx.fillRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+      const exp2 = /ctx.strokeRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+      const exp3 = /ctx.clearRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
+
+      const matches1 = userInput.match(exp1);
+      if (matches1 && matches1.length === 5){
+        let x = parseInt(matches1[1]);
+        let y = parseInt(matches1[2]);
+        let width = parseInt(matches1[3]);
+        let height = parseInt(matches1[4]);
+        if (!(x >= 300 && y >= 300 && x + width <= 400 && y + height <= 400)) {
+          return false;
+        }
+      } else {
+        return false;
+      }
+
+      const matches2 = userInput.match(exp2);
+      if (matches1 && matches1.length === 5) {
+        let x = parseInt(matches1[1]);
+        let y = parseInt(matches1[2]);
+        let width = parseInt(matches1[3]);
+        let height = parseInt(matches1[4]);
+        if (!(x >= 300 && y >= 300 && x + width <= 400 && y + height <= 400)) {
+          return false;
+        }
+      } else {
+        return false;
+      }
+
+      const matches3 = userInput.match(exp3);
+      if (matches1 && matches1.length === 5) {
+        let x = parseInt(matches1[1]);
+        let y = parseInt(matches1[2]);
+        let width = parseInt(matches1[3]);
+        let height = parseInt(matches1[4]);
+        if (x >= 300 && y >= 300 && x + width <= 400 && y + height <= 400) {
+          return true;
+        }
       }
       return false;
     },

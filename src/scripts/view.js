@@ -2,8 +2,8 @@ export default class View {
   constructor({level: level, iframe: iframe}){
     this.defaultBody = `
       <div class='canvas-container'>
-        <canvas id='canvas' height="700px" width="770px"></canvas>
-        <canvas id='background' height="700px" width="770px"></canvas>
+        <canvas id='canvas' height="700px" width="845px"></canvas>
+        <canvas id='background' height="700px" width="845px"></canvas>
       </div>`;
     this.level = level;
     this.iframe = iframe;
@@ -23,20 +23,20 @@ export default class View {
   }
 
   addHtmlContent(){
-    let htmlContent = { type: "html", value: this.defaultBody }
+    let htmlContent = { type: "html", value: this.defaultBody };
     this.iframe.contentWindow.postMessage(htmlContent, "*");
   }
 
   // Wrap everything in an anonymous function so that you can redeclare variables
   // Need to find a fix for global variables
   addBackgroundCanvasContent(){
-    const setupVal = `(() => {${this.level.setup.background}})()`
-    let jsSetup = { type: "setupScript", value: setupVal }
+    const setupVal = `(() => {${this.level.setup.background}})()`;
+    let jsSetup = { type: "setupScript", value: setupVal };
     this.iframe.contentWindow.postMessage(jsSetup, "*");
   }
 
   addInitialCanvasContent(){
-    this.updateContent(this.level.setup.main)
+    this.updateContent(this.level.setup.main);
   }
 
   updateContent(content){

@@ -484,11 +484,11 @@ span.CodeMirror-selectedtext { background: none; }
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/editor.css ***!
   \*****************************************************************************************************/
 .CodeMirror {
-  width: 50%;
+  width: 45%;
   height: 700px;
   margin: 0;
   display: block;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .editor-game-group {
@@ -515,7 +515,7 @@ canvas {
 }
 
 .render-view, .render-view-sandbox {
-  width: 50%;
+  width: 55%;
   height: 700px;
   border: 1px solid black;
 }

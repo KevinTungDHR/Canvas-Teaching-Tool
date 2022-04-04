@@ -14,9 +14,9 @@ export default class Editor{
   }
 
   bindHandlers(){
-    this.readOnlyHandler = this.readOnlyHandler.bind(this)
+    this.readOnlyHandler = this.readOnlyHandler.bind(this);
     // this.handleInput = this.handleInput.bind(this);
-    this.handleInput = debounce(this.handleInput.bind(this), 100)
+    this.handleInput = debounce(this.handleInput.bind(this), 250);
   }
 
   clearEditor(){
@@ -38,11 +38,11 @@ export default class Editor{
 
   prefillEditor(level){
     let doc = this.cm.getDoc();
-    doc.replaceRange(level.setup.main, {line: 0, ch: 0})
+    doc.replaceRange(level.setup.main, {line: 0, ch: 0});
   }
 
   addReadOnlyListener(){
-    this.cm.on('beforeChange', this.readOnlyHandler)
+    this.cm.on('beforeChange', this.readOnlyHandler);
   }
 
   removeReadOnlyListener(){
