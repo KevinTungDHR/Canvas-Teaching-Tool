@@ -39,7 +39,6 @@ export default class View {
 
   addSolutionCanvas(){
     if (this.level.setup.solution){
-      console.log("in solution");
       const setupVal = `(() => {${this.level.setup.solution}})()`;
       let solutionSetup = { type: "solutionScript", value: setupVal };
       this.iframe.contentWindow.postMessage(solutionSetup, "*");

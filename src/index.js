@@ -5,7 +5,7 @@ import Editor from './scripts/editor';
 import Game from './scripts/game';
 import Sandbox from './scripts/sandbox';
 import View from './scripts/view';
-import { mseCompare } from './scripts/util';
+import { mseCompare, pixelCompare } from './scripts/util';
 
 window.addEventListener("DOMContentLoaded", (event) => {
   const cm = CodeMirror.fromTextArea(document.querySelector("#codemirror"), {
@@ -151,6 +151,12 @@ function addModeEventListeners(){
   const mseCompareButton = document.querySelector('.mseCompare');
   mseCompareButton.addEventListener('click', () => {
     console.log(mseCompare());
+  });
+
+  const pixelCompareButton = document.querySelector('.pixelCompare');
+  console.log("test")
+  pixelCompareButton.addEventListener('click', () => {
+    console.log(pixelCompare());
   });
 }
 

@@ -1,3 +1,5 @@
+import pixelmatch from "pixelmatch";
+
 function debounce(func, wait){
   let timer;
   return function executedFunction(...args){
@@ -24,4 +26,21 @@ function mseCompare(){
   return mse
 }
 
-export { debounce, mseCompare };
+function pixelCompare(){
+  const iframe = document.querySelector('.render-view');
+  const idoc = iframe.contentWindow.document;
+  const solution = idoc.getElementById('solution');
+  const userCanvas = idoc.getElementById('canvas');
+
+  const output = document.createElement('canvas');
+  const diffContext = output.getContext('2d');
+
+  const img1 = solution.getContext('2d').getImageData(0,0, solution.width, solution.height)
+  const img2 = userCanvas.getContext('2d').getImageData(0, 0, solution.width, solution.height)
+  const diff = diffContext.createImageData(solution.width, solution.height);
+
+  const numDiffPixels = pixelmatch(img1.data, img2.data, diff.data, solution.width, solution.height, {threshold: 0.1});
+  return numDiffPixels;
+}
+
+export { debounce, mseCompare, pixelCompare };
