@@ -5,6 +5,7 @@ import Editor from './scripts/editor';
 import Game from './scripts/game';
 import Sandbox from './scripts/sandbox';
 import View from './scripts/view';
+import { mseCompare } from './scripts/util';
 
 window.addEventListener("DOMContentLoaded", (event) => {
   const cm = CodeMirror.fromTextArea(document.querySelector("#codemirror"), {
@@ -70,6 +71,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
               document.body.appendChild(setupScript);
             }
 
+            if (type === 'solutionScript'){
+              // Need to clear or else old functions leave the canvas in wrong state.
+              let canvas = document.querySelector("#solution");
+              canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+              let solutionScript = document.querySelector(".solution-script");
+              if(solutionScript){
+                document.body.removeChild(solutionScript);
+              }
+              
+              solutionScript = document.createElement("script");
+              solutionScript.className = "solution-script";
+              solutionScript.innerHTML = value;
+              document.body.appendChild(solutionScript);
+            }
+
             if (type === 'script'){
               // Need to clear or else old functions leave the canvas in wrong state.
               let canvas = document.querySelector("#canvas");
@@ -131,6 +147,11 @@ function addModeEventListeners(){
     showGameGroup();
     hideSandboxGroup();
   })
+
+  const mseCompareButton = document.querySelector('.mseCompare');
+  mseCompareButton.addEventListener('click', () => {
+    console.log(mseCompare());
+  });
 }
 
 

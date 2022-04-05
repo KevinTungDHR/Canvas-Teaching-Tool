@@ -1,3 +1,5 @@
+import { mseCompare } from "./util";
+
 export const levels = [
   {
     currentLevel: 0,
@@ -326,6 +328,11 @@ export const levels = [
         }
     `,
       main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.beginPath()\nctx.arc(300, 300, 150, 0, 2 * Math.PI)\nctx.stroke()`,
+      solution: `let canvas = document.getElementById('solution')
+      let ctx = canvas.getContext('2d')
+      ctx.beginPath()
+      ctx.arc(300, 300, 150, 0, Math.PI + Math.PI / 2)
+      ctx.stroke()`,
     },
     instructions: 'The fourth and fifth arguments for an arc are the starting and ending angles calculated in radians. For a simple full circle we start at 0 radians and end at 2π radians (360°). Change the ending angle so that the arc matches the dotted curve.',
     solution(userInput) {
@@ -335,7 +342,7 @@ export const levels = [
       if (matches) {
         let startAng = parseInt(matches[4]);
         let endAng = matches[5];
-        return (startAng === 0 && eval(endAng) === (Math.PI + Math.PI / 2));
+        return (startAng === 0 && mseCompare() < 4);
       }
       return false;
     },
@@ -355,6 +362,11 @@ export const levels = [
         }
     `,
       main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.beginPath()\nctx.arc(300, 300, 150, 0, 2 * Math.PI)\nctx.stroke()`,
+      solution: `let canvas = document.getElementById('solution')
+      let ctx = canvas.getContext('2d')
+      ctx.beginPath()
+      ctx.arc(300, 300, 150, 0, Math.PI / 2, true)
+      ctx.stroke()`,
     },
     instructions: 'There is one last optional argument to the context.arc() method which is a boolean that checks whether or not the arc is drawn counter-clockwise. Draw a counter-clockwise arc that matches the dotted curve (Keep the starting angle at 0).',
     solution(userInput) {
@@ -364,7 +376,7 @@ export const levels = [
       if (matches) {
         let startAng = parseInt(matches[4]);
         let endAng = matches[5];
-        return (startAng === 0 && eval(endAng) === (Math.PI / 2));
+        return (startAng === 0 && mseCompare() < 4);
       }
       return false;
     },

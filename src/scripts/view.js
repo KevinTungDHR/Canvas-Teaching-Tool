@@ -3,6 +3,7 @@ export default class View {
     this.defaultBody = `
       <div class='canvas-container'>
         <canvas id='canvas' height="700px" width="845px"></canvas>
+        <canvas id='solution' height="700px" width="845px"></canvas>
         <canvas id='background' height="700px" width="845px"></canvas>
       </div>`;
     this.level = level;
@@ -20,6 +21,7 @@ export default class View {
     this.addHtmlContent();
     this.addBackgroundCanvasContent();
     this.addInitialCanvasContent();
+    this.addSolutionCanvas()
   }
 
   addHtmlContent(){
@@ -33,6 +35,15 @@ export default class View {
     const setupVal = `(() => {${this.level.setup.background}})()`;
     let jsSetup = { type: "setupScript", value: setupVal };
     this.iframe.contentWindow.postMessage(jsSetup, "*");
+  }
+
+  addSolutionCanvas(){
+    if (this.level.setup.solution){
+      console.log("in solution");
+      const setupVal = `(() => {${this.level.setup.solution}})()`;
+      let solutionSetup = { type: "solutionScript", value: setupVal };
+      this.iframe.contentWindow.postMessage(solutionSetup, "*");
+    }
   }
 
   addInitialCanvasContent(){
