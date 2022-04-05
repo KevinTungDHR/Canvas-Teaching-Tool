@@ -383,7 +383,7 @@ export const levels = [
   },
   {
     currentLevel: 10,
-    readOnlyLines: [0, 1, 2],
+    readOnlyLines: [0, 1],
     setup: {
       background: `
       const canvas = document.getElementById('background');
@@ -410,7 +410,7 @@ export const levels = [
 
         }
     `,
-      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.beginPath()\nctx.arc(300, 300, 150, 0, 2 * Math.PI)\nctx.stroke()`,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')`,
       solution:`
         const canvas = document.getElementById('solution');
         if (canvas.getContext) {
