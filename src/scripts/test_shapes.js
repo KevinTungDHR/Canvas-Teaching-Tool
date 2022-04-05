@@ -23,3 +23,22 @@
 // ctx.lineTo(210, 620);
 // ctx.closePath();
 // ctx.fill();
+
+// const path1 = new Path2D();
+// path1.rect(300, 300, 300, 200);
+// ctx.fillStyle = 'turquoise';
+// ctx.fill(path1);
+
+// canvas.addEventListener('mousemove', function(event) {
+//   if (ctx.isPointInPath(path1, event.offsetX, event.offsetY)) {
+//     ctx.fillStyle = 'red';
+//   } else {
+//     ctx.fillStyle = 'turquoise';
+//   }
+
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   ctx.fill(path1);
+//   console.log("hello");
+
+// });
+

@@ -577,15 +577,92 @@ export const levels = [
     },
     instructions: 'Canvas also allows you to draw Bézier curves using bezierCurveto(). Using the bezierCurveTo() method draw a curve on the dotted line that closely resembles the shape.',
     solution(userInput) {
-      const exp = /ctx.lineTo/g;
-      const exp2 = /ctx.closePath/;
-      if (!exp2.test(userInput)) {
+      const exp = /ctx.bezierCurveTo/g;
+
+
+      const matches = Array.from(userInput.matchAll(exp));
+      if (matches && matches.length === 1) {
+        return (pixelCompare() < 220 && mseCompare() < 45);
+      }
+      return false;
+    },
+  },
+  {
+    currentLevel: 14,
+    readOnlyLines: [0, 1, 2],
+    setup: {
+      background: `
+      const canvas = document.getElementById('background');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.setLineDash([5]);
+          ctx.beginPath();
+          ctx.moveTo(200, 600);
+          ctx.quadraticCurveTo(350, 10, 500, 600);
+          ctx.stroke()
+
+        }
+    `,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d');`,
+      solution: `
+        const canvas = document.getElementById('solution');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.beginPath();
+          ctx.moveTo(200, 600);
+          ctx.quadraticCurveTo(350, 10, 500, 600);
+          ctx.stroke()
+        }`,
+    },
+    instructions: 'Another type of curve you have access to is the quadratic Bézier curve. Using the quadraticCurveTo() method draw a curve on the dotted line that closely resembles the shape.',
+    solution(userInput) {
+      const exp = /ctx.quadraticCurveTo/g;
+
+
+      const matches = Array.from(userInput.matchAll(exp));
+      if (matches && matches.length === 1) {
+        return (pixelCompare() < 565 && mseCompare() < 78);
+      }
+      return false;
+    },
+  },
+  {
+    currentLevel: 15,
+    readOnlyLines: [0, 1, 2],
+    setup: {
+      background: `
+      const canvas = document.getElementById('background');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.setLineDash([5]);
+          ctx.rect(300,300,300,200)
+          ctx.stroke()
+
+        }
+    `,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d');`,
+      solution: `
+        const canvas = document.getElementById('solution');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.beginPath();
+          ctx.rect(300,300,300,200)
+          ctx.stroke()
+        }`,
+    },
+    instructions: 'Did you know you can also add event listeners to the canvas? See if you can combine addEventListener, isPointInPath and new Path2D to create a rectangle that changes color on mousemove.',
+    solution(userInput) {
+      const test1 = /new Path2D/;
+      const test2 = /addEventerListener/;
+      const test3 = /isPointInPath/;
+      const test4 = /mousemove/;
+      if (!(test1.test(userInput) && test2.test(userInput) && test3.test(userInput) && test4.test(userInput))){
         return false;
       }
 
       const matches = Array.from(userInput.matchAll(exp));
-      if (matches && matches.length >= 4) {
-        return (pixelCompare() < 250 && mseCompare() < 60);
+      if (matches && matches.length === 1) {
+        return (pixelCompare() < 565 && mseCompare() < 78);
       }
       return false;
     },

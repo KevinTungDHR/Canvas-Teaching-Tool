@@ -49,7 +49,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         <script type='module' defer>
           window.addEventListener('message', (event) => {
             const { type, value } = event.data;
-
+           
             if (type === 'html'){
               document.body.innerHTML = value;
             }

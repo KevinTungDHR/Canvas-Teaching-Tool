@@ -41,7 +41,7 @@ In addition, this project will include:
 ## Technologies, Libraries, APIs ##
   * Canvas API for rendering 2D elements
   * CodeMirror (for syntax highlighting, indentation and linenumbers)
-  * pixelMatch (pending approval as a secondary check for solutions)
+  * pixelMatch to check for canvas comparison (solution and user input) (perceptual hashing is the next step)
   * Webpack to bundle the JS modules for browser
   * npm to manage project dependencies
 
@@ -62,4 +62,4 @@ In addition, this project will include:
   * Having tabs in the Code Editor to show the underyling HTML and CSS of the canvas elements.
   * Create draggable canvas elements.
   * Hover over elements to provide tool tips
-  * Animated demos to provide examples of how Canvas elements work.
+  * Animated demos to provide examples of how Canvas elements work. (Check the arcTo mdn docs to see their loops);
