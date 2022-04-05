@@ -2,7 +2,7 @@
 
 Welcome! This JavaScript app is designed for people to learn how to use the Canvas API / library as well as give users a place test out their ideas in realtime. This app contains two key features: a sandbox environment with a built-in browser code editor that updates the canvas elements in real time as well as a tutorial for teaching basic canvas concepts. 
 
-### Sandbox ###
+### Sandbox -> Currently moved to a mvp ###
 While you can write code directly in the editor, there will be sliders (or even draggable elements) that can adjust the properties of each drawn element that would update the written code. For example, sliding the posX slider for a rectangle should update the argument for the x parameter in the IDE. 
 
 ### Tutorial ###
@@ -40,7 +40,8 @@ In addition, this project will include:
 
 ## Technologies, Libraries, APIs ##
   * Canvas API for rendering 2D elements
-  * CodeMirror (pending approval, to have syntax highlighting)
+  * CodeMirror (for syntax highlighting, indentation and linenumbers)
+  * pixelMatch (pending approval as a secondary check for solutions)
   * Webpack to bundle the JS modules for browser
   * npm to manage project dependencies
 
