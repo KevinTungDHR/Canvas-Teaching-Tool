@@ -18,7 +18,7 @@ export default class Game{
     const savedLevel = localStorage.getItem("level");
 
     if (savedLevel){
-      let currentLevel = JSON.parse(savedLevel);
+      let currentLevel = parseInt(savedLevel);
       return levels[currentLevel];
     }
     return undefined;

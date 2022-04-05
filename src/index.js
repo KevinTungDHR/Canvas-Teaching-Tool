@@ -1,10 +1,8 @@
 import CodeMirror from 'codemirror';
 import "codemirror/mode/javascript/javascript.js";
-import "codemirror/addon/display/autorefresh.js"
-import Editor from './scripts/editor';
+import "codemirror/addon/display/autorefresh.js";
 import Game from './scripts/game';
 import Sandbox from './scripts/sandbox';
-import View from './scripts/view';
 import { mseCompare, pixelCompare } from './scripts/util';
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -105,13 +103,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
       <body>
       </body>
     </html>
-  `
+  `;
 
   iframe.srcdoc = srcdoc;
   iframeSandbox.srcdoc = srcdoc;
   addModeEventListeners();
 
-  const sandbox = new Sandbox({iframe: iframeSandbox, codemirror: sandboxCm})
+  const sandbox = new Sandbox({iframe: iframeSandbox, codemirror: sandboxCm});
   const game = new Game({iframe: iframe, codemirror: cm});
 });
 
@@ -136,8 +134,8 @@ function showSandboxGroup(){
 }
 
 function addModeEventListeners(){
-  const sandboxButton = document.getElementById("sandbox-tab")
-  const gameButton = document.getElementById("game-tab")
+  const sandboxButton = document.getElementById("sandbox-tab");
+  const gameButton = document.getElementById("game-tab");
   sandboxButton.addEventListener('click', (e)=>{
     hideGameGroup();
     showSandboxGroup();

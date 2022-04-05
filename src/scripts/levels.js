@@ -488,6 +488,108 @@ export const levels = [
       return false;
     },
   },
+  {
+    currentLevel: 12,
+    readOnlyLines: [0, 1],
+    setup: {
+      background: `
+      const canvas = document.getElementById('background');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.setLineDash([5]);
+          ctx.beginPath();
+          ctx.moveTo(200, 200);
+          ctx.lineTo(500, 200);
+          ctx.lineTo(200, 500);
+          ctx.closePath();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(625, 625);
+          ctx.lineTo(625, 200);
+          ctx.lineTo(200, 625);
+          ctx.closePath();
+          ctx.stroke();
+
+        }
+    `,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')`,
+      solution: `
+        const canvas = document.getElementById('solution');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.beginPath();
+          ctx.moveTo(200, 200);
+          ctx.lineTo(500, 200);
+          ctx.lineTo(200, 500);
+          ctx.closePath();
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.moveTo(625, 625);
+          ctx.lineTo(625, 200);
+          ctx.lineTo(200, 625);
+          ctx.closePath();
+          ctx.fill();
+        }`,
+    },
+    instructions: 'The closePath() method is important for creating distince shapes and separating out our drawing logic. Use closePath() and lineTo() to create two triangles. The left filled and right dotted.',
+    solution(userInput) {
+      const exp = /ctx.lineTo/g;
+      const exp2 = /ctx.closePath/;
+      if(!exp2.test(userInput)){
+        return false;
+      }
+
+      const matches = Array.from(userInput.matchAll(exp));
+      if (matches && matches.length >= 4) {
+        return (pixelCompare() < 14000 && mseCompare() < 1550);
+      }
+      return false;
+    },
+  },
+  {
+    currentLevel: 13,
+    readOnlyLines: [0, 1, 2],
+    setup: {
+      background: `
+      const canvas = document.getElementById('background');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.setLineDash([5]);
+          ctx.beginPath();
+          ctx.moveTo(100, 200);
+          ctx.bezierCurveTo(300, 210, 200, 350, 400, 350);
+          ctx.stroke()
+
+        }
+    `,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d');`,
+      solution: `
+        const canvas = document.getElementById('solution');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.beginPath();
+          ctx.moveTo(100, 200);
+          ctx.bezierCurveTo(300, 210, 200, 350, 400, 350);
+          ctx.stroke()
+        }`,
+    },
+    instructions: 'Canvas also allows you to draw Bézier curves using bezierCurveto(). Using the bezierCurveTo() method draw a curve on the dotted line that closely resembles the shape.',
+    solution(userInput) {
+      const exp = /ctx.lineTo/g;
+      const exp2 = /ctx.closePath/;
+      if (!exp2.test(userInput)) {
+        return false;
+      }
+
+      const matches = Array.from(userInput.matchAll(exp));
+      if (matches && matches.length >= 4) {
+        return (pixelCompare() < 250 && mseCompare() < 60);
+      }
+      return false;
+    },
+  },
 
 ];
 

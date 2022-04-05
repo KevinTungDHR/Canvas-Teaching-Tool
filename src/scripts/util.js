@@ -23,7 +23,7 @@ function mseCompare(){
     sum += Math.pow(difference, 2);
   }
   let mse = sum / (solution.width * solution.height);
-  return mse
+  return mse;
 }
 
 function pixelCompare(){
@@ -35,8 +35,8 @@ function pixelCompare(){
   const output = document.createElement('canvas');
   const diffContext = output.getContext('2d');
 
-  const img1 = solution.getContext('2d').getImageData(0,0, solution.width, solution.height)
-  const img2 = userCanvas.getContext('2d').getImageData(0, 0, solution.width, solution.height)
+  const img1 = solution.getContext('2d').getImageData(0,0, solution.width, solution.height);
+  const img2 = userCanvas.getContext('2d').getImageData(0, 0, solution.width, solution.height);
   const diff = diffContext.createImageData(solution.width, solution.height);
 
   const numDiffPixels = pixelmatch(img1.data, img2.data, diff.data, solution.width, solution.height, {threshold: 0.1});
