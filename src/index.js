@@ -141,12 +141,12 @@ function addModeEventListeners(){
   sandboxButton.addEventListener('click', (e)=>{
     hideGameGroup();
     showSandboxGroup();
-  })
+  });
 
   gameButton.addEventListener('click', (e)=>{
     showGameGroup();
     hideSandboxGroup();
-  })
+  });
 
   const mseCompareButton = document.querySelector('.mseCompare');
   mseCompareButton.addEventListener('click', () => {
@@ -154,7 +154,6 @@ function addModeEventListeners(){
   });
 
   const pixelCompareButton = document.querySelector('.pixelCompare');
-  console.log("test")
   pixelCompareButton.addEventListener('click', () => {
     console.log(pixelCompare());
   });

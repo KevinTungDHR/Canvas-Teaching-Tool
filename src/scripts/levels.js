@@ -391,6 +391,49 @@ export const levels = [
           var ctx = canvas.getContext('2d');
           ctx.setLineDash([5]);
           ctx.beginPath();
+          ctx.moveTo(200, 250)
+          ctx.lineTo(450, 580)
+          ctx.lineTo(600, 150)
+          ctx.lineTo(200, 250)
+          ctx.stroke();
+          ctx.closePath();
+        }
+    `,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')`,
+      solution: `
+        const canvas = document.getElementById('solution');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.beginPath();
+          ctx.moveTo(200, 250)
+          ctx.lineTo(450, 580)
+          ctx.lineTo(600, 150)
+          ctx.lineTo(200, 250)
+          ctx.fill();
+          ctx.closePath();
+        }`,
+    },
+    instructions: 'Use beginPath, moveTo and lineTo to draw a triangle',
+    solution(userInput) {
+      const exp = /ctx.lineTo/g;
+      const matches = Array.from(userInput.matchAll(exp));
+      if (matches && matches.length >= 3) {
+        // console.log(`pixel: ${pixelCompare()}`);
+        // console.log(`mse: ${mseCompare()}`);
+        return (pixelCompare() < 5300 && mseCompare() < 680);
+      }
+    },
+  },
+  {
+    currentLevel: 11,
+    readOnlyLines: [0, 1],
+    setup: {
+      background: `
+      const canvas = document.getElementById('background');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.setLineDash([5]);
+          ctx.beginPath();
           ctx.arc(400, 150, 100, 0, Math.PI * 2)
           ctx.stroke();
           ctx.closePath();
@@ -440,7 +483,7 @@ export const levels = [
       const exp = /ctx.arc/g;
       const matches = Array.from(userInput.matchAll(exp));
       if (matches && matches.length >= 3) {
-        return (pixelCompare() < 11000 && mseCompare() < 1250);
+        return (pixelCompare() < 10500 && mseCompare() < 1250);
       }
       return false;
     },
