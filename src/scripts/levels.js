@@ -1,4 +1,4 @@
-import { mseCompare } from "./util";
+import { mseCompare, pixelCompare } from "./util";
 
 export const levels = [
   {
@@ -391,21 +391,56 @@ export const levels = [
           var ctx = canvas.getContext('2d');
           ctx.setLineDash([5]);
           ctx.beginPath();
-          ctx.arc(300, 300, 100, 0, Math.PI / 2, true)
+          ctx.arc(400, 150, 100, 0, Math.PI * 2)
           ctx.stroke();
+          ctx.closePath();
+          ctx.beginPath();
+          ctx.arc(400, 250, 100, Math.PI * 1.85, Math.PI + 0.5)
+          ctx.stroke();
+          ctx.closePath();
+          ctx.beginPath();
+          ctx.arc(400, 350, 100, Math.PI * 1.85, Math.PI + 0.5)
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(305, 380)
+          ctx.lineTo(400, 650)
+          ctx.lineTo(495, 380)
+          ctx.stroke();
+          ctx.closePath();
+
         }
     `,
       main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.beginPath()\nctx.arc(300, 300, 150, 0, 2 * Math.PI)\nctx.stroke()`,
+      solution:`
+        const canvas = document.getElementById('solution');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.beginPath();
+          ctx.arc(400, 150, 100, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.closePath();
+          ctx.beginPath();
+          ctx.arc(400, 250, 100, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.closePath();
+          ctx.beginPath();
+          ctx.arc(400, 350, 100, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(305, 380)
+          ctx.lineTo(400, 650)
+          ctx.lineTo(495, 380)
+          ctx.lineTo(305, 380)
+          ctx.fill();
+          ctx.closePath();
+        }`,
     },
-    instructions: 'There is one last optional argument to the context.arc() method which is a boolean that checks whether or not the arc is drawn counter-clockwise. Draw a counter-clockwise arc that matches the dotted curve (Keep the starting angle at 0).',
+    instructions: 'Match the given shape as closely as possible! Use at least 3 arcs!',
     solution(userInput) {
-      const exp = /ctx.arc\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(.*),\s*(true)/;
-      const matches = userInput.match(exp);
-
-      if (matches) {
-        let startAng = parseInt(matches[4]);
-        let endAng = matches[5];
-        return (startAng === 0 && eval(endAng) === (Math.PI / 2));
+      const exp = /ctx.arc/g;
+      const matches = Array.from(userInput.matchAll(exp));
+      if (matches && matches.length >= 3) {
+        return (pixelCompare() < 11000 && mseCompare() < 1250);
       }
       return false;
     },
@@ -413,3 +448,33 @@ export const levels = [
 
 ];
 
+// ctx.arc(400, 150, 90, 0, Math.PI * 2);
+// ctx.fill();
+// ctx.closePath();
+// ctx.beginPath();
+// ctx.arc(400, 250, 90, 0, Math.PI * 2);
+// ctx.fill();
+// ctx.closePath();
+// ctx.beginPath();
+// ctx.arc(400, 350, 90, 0, Math.PI * 2);
+// ctx.fill();
+// ctx.beginPath();
+// ctx.moveTo(315, 380)
+// ctx.lineTo(400, 640)
+// ctx.lineTo(485, 380)
+// ctx.lineTo(315, 380)
+// ctx.fill();
+// ctx.closePath();
+
+// OWL
+// ctx.beginPath()
+// ctx.arc(150, 150, 50, 0, Math.PI * 2);
+// ctx.stroke();
+// ctx.closePath();
+// ctx.beginPath();
+// ctx.fill();
+// ctx.fill();
+// ctx.ellipse(170, 260, 80, 100, 15, 0, Math.PI*2);
+
+// ctx.stroke();
+// ctx.closePath();
