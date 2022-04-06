@@ -1,4 +1,4 @@
-# JavaScript Proposal - Canvas Learning Tool
+# JavaScript Proposal - Can I Canvas?
 
 Welcome! This JavaScript app is designed for people to learn how to use the Canvas API / library as well as give users a place test out their ideas in realtime. This app contains two key features: a sandbox environment with a built-in browser code editor that updates the canvas elements in real time as well as a tutorial for teaching basic canvas concepts. 
 
