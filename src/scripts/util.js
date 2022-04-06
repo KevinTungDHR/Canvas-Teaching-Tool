@@ -43,4 +43,13 @@ function pixelCompare(){
   return numDiffPixels;
 }
 
+
+// function pointChecker(x, y){
+//   const iframe = document.querySelector('.render-view');
+//   const idoc = iframe.contentWindow.document;
+//   const userCanvas = idoc.getElementById('canvas');
+//   const context = userCanvas.getContext('2d');
+//   return context.isPointInPath(parseInt(x), parseInt(y))
+// }
+
 export { debounce, mseCompare, pixelCompare };

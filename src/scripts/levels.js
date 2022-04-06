@@ -1,4 +1,4 @@
-import { mseCompare, pixelCompare } from "./util";
+import { mseCompare, pixelCompare, pointChecker } from "./util";
 
 export const levels = [
   {
@@ -635,6 +635,89 @@ export const levels = [
         if (canvas.getContext) {
           var ctx = canvas.getContext('2d');
           ctx.setLineDash([5]);
+          let path = new Path2D();
+          path.ellipse(200,200,100,200,Math.PI * 0.2, 0, Math.PI*2)
+          ctx.stroke(path)
+
+        }
+    `,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d');`,
+      solution: `
+        const canvas = document.getElementById('solution');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          let path = new Path2D();
+          path.ellipse(200,200,100,200,Math.PI * 0.2, 0, Math.PI*2)
+          ctx.fill(path)
+        }`,
+    },
+    instructions: 'The Path2D constructor allows you to create a new Path2D object that gives you the ability to retain path information. Let\'s create a new Path2D object and call the Path#ellipse and Path#fill methods to create an ellipse. An ellipse takes an x, y, radiusY, rotation, startAngle and endAngle',
+    solution(userInput) {
+      const test1 = /new Path2D/;
+      const test2 = /ellipse/;
+      const test3 = /fill/;
+
+      if (!(test1.test(userInput) && test2.test(userInput) && test3.test(userInput))){
+        return false;
+      }
+
+      return (mseCompare() < 1300 && pixelCompare() < 12000)
+    },
+  },
+  {
+    currentLevel: 16,
+    readOnlyLines: [0, 1, 2],
+    setup: {
+      background: `
+      const canvas = document.getElementById('background');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.setLineDash([5]);
+          let path = new Path2D();
+          path.rect(100,50,300,200);
+          ctx.stroke(path);
+        }
+    `,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d');`,
+      solution: `
+        const canvas = document.getElementById('solution');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          let path = new Path2D();
+          path.rect(100,50,300,200);
+          ctx.fill(path);
+          ctx.isPointInPath(100,49);
+        }`,
+    },
+    instructions: 'Using our new knowledge of Path2D objects we can now use methods such as isPointInPath to check whether a point is within the current path. Let\'s create a new path2D rectangle and check whether our point is within our path. isPointInPath takes in three arguments: the pathObject, and x-coordinate and y-coordinate.',
+    solution(userInput) {
+      const test1 = /new Path2D/;
+      const test2 = /ctx.fill/;
+      const test3 = /isPointInPath\([a-zA-z]*\s*[,]*\s*(\d+)\s*,\s*(\d+)\s*\)/;
+      const rect = /rect\(\s*(\d+)s*,\s*(\d+)\s*,\s*(\d+)s*,\s*(\d+)\s*\)/
+      if (!(test1.test(userInput) && test2.test(userInput))){
+        return false;
+      }
+      const matches = test3.exec(userInput)
+      const matches2 = rect.exec(userInput)
+
+      let [pointMatch, pointX, pointY] = matches.map((el) => parseInt(el, 10));
+      let [r, x, y, width, height, args] = matches2.map((el) => parseInt(el, 10))
+
+      if(matches && matches2){
+        return (mseCompare() < 1100 && pointX >= x && pointX <= x + width && pointY >= y && pointY <= y + height);
+      }
+    },
+  },
+  {
+    currentLevel: 17,
+    readOnlyLines: [0, 1, 2],
+    setup: {
+      background: `
+      const canvas = document.getElementById('background');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.setLineDash([5]);
           ctx.rect(300,300,300,200)
           ctx.stroke()
 
@@ -646,57 +729,66 @@ export const levels = [
         if (canvas.getContext) {
           var ctx = canvas.getContext('2d');
           ctx.beginPath();
-          ctx.rect(300,300,300,200)
-          ctx.stroke()
+          ctx.fillRect(300,300,300,200)
         }`,
     },
     instructions: 'Did you know you can also add event listeners to the canvas? See if you can combine addEventListener, isPointInPath and new Path2D to create a rectangle that changes color on mousemove.',
     solution(userInput) {
       const test1 = /new Path2D/;
-      const test2 = /addEventerListener/;
+      const test2 = /addEventListener/;
       const test3 = /isPointInPath/;
-      const test4 = /mousemove/;
-      if (!(test1.test(userInput) && test2.test(userInput) && test3.test(userInput) && test4.test(userInput))){
+      const test4 = /mousemove|mouseover/;
+      const test5 = /ctx.fill/;
+
+      if (!(test1.test(userInput) && test2.test(userInput) && test3.test(userInput) && test4.test(userInput) && test5.test(userInput))){
         return false;
       }
 
-      const matches = Array.from(userInput.matchAll(exp));
-      if (matches && matches.length === 1) {
-        return (pixelCompare() < 565 && mseCompare() < 78);
+      return (mseCompare() < 1100)
+    },
+  },
+  {
+    currentLevel: '18',
+    readOnlyLines: [0, 1, 2],
+    setup: {
+      background: `
+      const canvas = document.getElementById('background');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.setLineDash([5]);
+          ctx.translate(300,300)
+          ctx.arc(0, 0, 50, 0, Math.PI * 2);
+          ctx.stroke()
+        }
+    `,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d');`,
+      solution: `
+        const canvas = document.getElementById('solution');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+          ctx.beginPath();
+          ctx.translate(300,300)
+          ctx.arc(0, 0, 50, 0, Math.PI * 2);
+          ctx.fill()
+        }`,
+    },
+    instructions: 'We\'ve been drawing all our shapes using coordinates where the top left corner is 0,0. We can use the translate method to translate the context horizontally and vertically. Use the translate method to shift the default position over 300px to the right and 300px down. Draw an arc with coordinates at the origin(0,0).',
+    solution(userInput) {
+      const test1 = /ctx.translate/;
+      const test2 = /ctx.fill/;
+      const test3 = /ctx.arc\(\s*(\d+)\s*,\s*(\d+)/;
+
+
+      if (!(test1.test(userInput) && test2.test(userInput))){
+        return false;
       }
+
+      let matches = test3.exec(userInput);
+      if(matches && matches.length >= 2) {
+        return (mseCompare() < 1100 && parseInt(matches[1]) === 0 && parseInt(matches[2]) === 0);
+      }
+
       return false;
     },
   },
-
 ];
-
-// ctx.arc(400, 150, 90, 0, Math.PI * 2);
-// ctx.fill();
-// ctx.closePath();
-// ctx.beginPath();
-// ctx.arc(400, 250, 90, 0, Math.PI * 2);
-// ctx.fill();
-// ctx.closePath();
-// ctx.beginPath();
-// ctx.arc(400, 350, 90, 0, Math.PI * 2);
-// ctx.fill();
-// ctx.beginPath();
-// ctx.moveTo(315, 380)
-// ctx.lineTo(400, 640)
-// ctx.lineTo(485, 380)
-// ctx.lineTo(315, 380)
-// ctx.fill();
-// ctx.closePath();
-
-// OWL
-// ctx.beginPath()
-// ctx.arc(150, 150, 50, 0, Math.PI * 2);
-// ctx.stroke();
-// ctx.closePath();
-// ctx.beginPath();
-// ctx.fill();
-// ctx.fill();
-// ctx.ellipse(170, 260, 80, 100, 15, 0, Math.PI*2);
-
-// ctx.stroke();
-// ctx.closePath();
