@@ -1,0 +1,59 @@
+html {
+  background-color: $light;
+}
+
+body {
+  font-family: $sans-serif;
+  font-size: 18px;
+}
+
+.mseCompare,
+.pixelCompare {
+  display: none;
+}
+
+header {
+  background-color: $steel;
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.nav-bar-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.nav-game-mode {
+  display: flex;
+}
+
+.nav-personal-links {
+  display: flex;
+}
+
+.nav-game-mode li,
+.nav-personal-links li {
+  padding: 20px 20px;
+  cursor: pointer;
+}
+
+
+.instructions {
+  display: block;
+  height: 100px;
+  width: 100%;
+}
+
+.level-counter span:hover {
+  cursor: pointer;
+}

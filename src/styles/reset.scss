@@ -47,3 +47,13 @@ table {
 	border-spacing: 0;
 }
 
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}

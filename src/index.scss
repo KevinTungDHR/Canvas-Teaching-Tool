@@ -1,6 +1,15 @@
-@import './styles/reset.css';
+// CSS Reset
+@import './styles/reset.scss';
+
+// Core
+@import './styles/colors.scss';
+@import './styles/fonts.scss';
+
+// Code Mirror
 @import 'codemirror/lib/codemirror.css';
-@import 'codemirror/theme/dracula.css';
-@import './styles/main_content.css';
-@import './styles/editor.css';
-@import './styles/iframe.css'
+@import 'codemirror/theme/base16-light.css';
+
+// Components
+@import './styles/main_content.scss';
+@import './styles/editor.scss';
+@import './styles/iframe.scss'

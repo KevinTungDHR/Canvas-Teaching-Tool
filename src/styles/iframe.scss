@@ -6,7 +6,8 @@ canvas {
   position: absolute;
 }
 
-.render-view, .render-view-sandbox {
+.render-view,
+.render-view-sandbox {
   width: 845px;
   height: 700px;
   border: 1px solid black;
@@ -17,6 +18,7 @@ canvas {
 }
 
 /* NEED THIS SO EVENT LISTENERS WORK, can't change z-index or else we lose clarity */
-#solution, #background{
-  pointer-events: none;  
+#solution,
+#background {
+  pointer-events: none;
 }
