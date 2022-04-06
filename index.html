@@ -40,7 +40,7 @@
   </header>
     <main class="main">
       <div>
-        <section class="instructions"></section>
+        
         <div class="level-counter">
           <span class="back-level">back</span>
           <span>Levels</span>
@@ -49,15 +49,18 @@
         <button class="mseCompare">mseCompare</button>
         <button class="pixelCompare">pixelCompare</button>
       </div>
-      <div class="editor-game-group">
-        <textarea name="" id="codemirror"></textarea>
-        <div class="iframe-container">
+      <div class="game-main-viewport">
+        <div class="left-viewport">
+          <section class="instructions"></section>
+          <textarea name="" id="codemirror"></textarea>
+        </div> 
+        <div class="right-viewport">
+          <iframe class="render-view" scrolling="no" frameborder="0">Sorry Iframe not supported</iframe>
+          <ul class="coordinates">
+            <li>X: <span class="posX"></span></li>
+            <li>Y: <span class="posY"></span></li>
+          </ul>
         </div>
-        <iframe class="render-view" scrolling="no" frameborder="0">Sorry Iframe not supported</iframe>
-        <ul class="coordinates">
-          <li class="posX">x</li>
-          <li class="posY">y</li>
-        </ul>
       </div>
       <div class="sandbox-group hidden">
         <textarea name="" id="codemirror-sandbox"></textarea>

@@ -197,7 +197,7 @@ export const levels = [
           ctx.closePath()
         }
     `,  
-      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.fillStyle = "grey"\nctx.fillRect(0, 0, 845, 700)`,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.fillStyle = "grey"\nctx.fillRect(0, 0, canvas.width, canvas.height)`,
     },
     instructions: 'Draw three rectangles within their zones:',
     solution(userInput) {

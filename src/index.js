@@ -138,7 +138,7 @@ function addThrottledCoordinates(){
 }
 
 function hideGameGroup(){
-  const gameGroup = document.querySelector(".editor-game-group");
+  const gameGroup = document.querySelector(".game-main-viewport");
   gameGroup.classList.add("hidden");
 }
 
@@ -148,7 +148,7 @@ function hideSandboxGroup(){
 }
 
 function showGameGroup(){
-  const gameGroup = document.querySelector(".editor-game-group");
+  const gameGroup = document.querySelector(".game-main-viewport");
   gameGroup.classList.remove("hidden");
 }
 

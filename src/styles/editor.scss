@@ -1,8 +1,12 @@
-.CodeMirror {
+.left-viewport {
   width: 45%;
-  height: 700px;
-  margin: 0;
   margin-right: 10px;
+}
+
+.CodeMirror {
+  width: 100%;
+  height: 600px;
+  margin: 0;
   display: block;
   font-size: 18px;
   box-sizing: border-box;
@@ -13,8 +17,9 @@
   padding: 1px 8px 0 0px;
 }
 
-.editor-game-group {
+.game-main-viewport {
   display: flex;
+  margin-top: 30px;
 }
 
 .sandbox-group {
