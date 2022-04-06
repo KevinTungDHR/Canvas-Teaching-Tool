@@ -21,7 +21,20 @@ export default class View {
     this.addHtmlContent();
     this.addBackgroundCanvasContent();
     this.addInitialCanvasContent();
-    this.addSolutionCanvas()
+    this.addSolutionCanvas();
+    this.addCoordinatesListener();
+  }
+
+  addCoordinatesListener(){
+    const setupVal = `(() => {
+      const canvas = document.querySelector('#canvas')
+          canvas.addEventListener('mousemove', (e)=> {
+            let pos = [e.offsetX, e.offsetY]
+            window.parent.postMessage(pos, '*')
+          }, false)
+    })()`;
+    let coordinatesScript = { type: "coordinates", value: setupVal };
+    this.iframe.contentWindow.postMessage(coordinatesScript, "*");
   }
 
   addHtmlContent(){

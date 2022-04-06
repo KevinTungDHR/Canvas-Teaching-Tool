@@ -50,6 +50,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
           window.addEventListener('message', (event) => {
             const { type, value } = event.data;
            
+            if (type === 'coordinates'){
+              let coordinatesScript = document.querySelector(".coordinatesScript");
+              if(coordinatesScript){
+                document.body.removeChild(coordinatesScript);
+              }
+
+              coordinatesScript = document.createElement("script");
+              coordinatesScript.className = "coordinatesScript";
+              coordinatesScript.innerHTML = value;
+              document.body.appendChild(coordinatesScript);
+            }
+
             if (type === 'html'){
               document.body.innerHTML = value;
             }

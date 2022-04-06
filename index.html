@@ -9,6 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./dist/main.css" />
+    <script>
+      const receiveMessage = function (event) {
+          let posX = document.querySelector('.posX')
+          let posY = document.querySelector('.posY')
+          let [x,y] = event.data;
+          posX.innerHTML = x;
+          posY.innerHTML = y;
+        }
+        window.addEventListener("message", receiveMessage, true);
+    </script>
     <script src="./dist/main.js"></script>
     <title>Project Name</title>
 </head>

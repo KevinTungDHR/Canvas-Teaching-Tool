@@ -740,6 +740,9 @@ header {
 
 canvas {
   position: absolute;
+}
+
+#canvas {
   background: #F0DDD3;
 }
 

@@ -4,7 +4,10 @@
 
 canvas {
   position: absolute;
-  background: $backdrop;
+}
+
+#canvas {
+  background: $code;
 }
 
 .render-view,
