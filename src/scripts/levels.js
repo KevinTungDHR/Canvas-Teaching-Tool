@@ -151,7 +151,7 @@ export const levels = [
           ctx.stroke();
         }
     `,  
-      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.fillStyle = "grey"\nctx.fillRect(0, 0, 845, 700)`,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.fillStyle = "grey"\nctx.fillRect(0, 0, canvas.width, canvas.height)`,
     },
     instructions: 'Cut out a rectangle from the canvas using clearRect()',
     solution(userInput) {

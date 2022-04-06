@@ -1,7 +1,11 @@
 export default class View {
   constructor({level: level, iframe: iframe}){
     this.defaultBody = `
-      `;
+      <div class='canvas-container'>
+        <canvas id='canvas' height="700px" width="845px"></canvas>
+        <canvas id='solution' height="700px" width="845px"></canvas>
+        <canvas id='background' height="700px" width="845px"></canvas>
+      </div>`;
     this.level = level;
     this.iframe = iframe;
     this.setupView = this.setupView.bind(this);
