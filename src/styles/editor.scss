@@ -7,6 +7,10 @@
   font-size: 18px;
   box-sizing: border-box;
   border-radius: 15px;
+  box-shadow: 2px 1px 5px;
+}
+.CodeMirror-linenumber {
+  padding: 1px 8px 0 0px;
 }
 
 .editor-game-group {

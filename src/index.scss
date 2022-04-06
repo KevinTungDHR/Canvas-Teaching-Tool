@@ -8,8 +8,10 @@
 // Code Mirror
 @import 'codemirror/lib/codemirror.css';
 @import 'codemirror/theme/base16-light.css';
+@import './styles/cm_style_override.scss';
 
 // Components
 @import './styles/main_content.scss';
+@import './styles/menu.scss';
 @import './styles/editor.scss';
 @import './styles/iframe.scss'

@@ -31,6 +31,20 @@ header {
     color: black;
     text-decoration: none;
   }
+
+  h1 {
+    font-family: $title;
+  }
+}
+
+.masthead {
+  display: flex;
+}
+
+.masthead h1 {
+  padding: 5px 0;
+  font-size: 42px;
+  cursor: pointer;
 }
 
 .nav-game-mode {
