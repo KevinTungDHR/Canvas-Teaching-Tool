@@ -1,5 +1,18 @@
 import pixelmatch from "pixelmatch";
 
+function myThrottle(func, wait){
+  let tooSoon = false;
+  return (event)=>{
+    if(!tooSoon) {
+      tooSoon = true;
+      setTimeout(()=>{
+        tooSoon = false;
+      }, wait);
+      func(event);
+    }
+  };
+}
+
 function debounce(func, wait){
   let timer;
   return function executedFunction(...args){
@@ -52,4 +65,4 @@ function pixelCompare(){
 //   return context.isPointInPath(parseInt(x), parseInt(y))
 // }
 
-export { debounce, mseCompare, pixelCompare };
+export { debounce, mseCompare, pixelCompare, myThrottle };

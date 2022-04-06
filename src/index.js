@@ -3,7 +3,7 @@ import "codemirror/mode/javascript/javascript.js";
 import "codemirror/addon/display/autorefresh.js";
 import Game from './scripts/game';
 import Sandbox from './scripts/sandbox';
-import { mseCompare, pixelCompare } from './scripts/util';
+import { mseCompare, myThrottle, pixelCompare } from './scripts/util';
 
 window.addEventListener("DOMContentLoaded", (event) => {
   const cm = CodeMirror.fromTextArea(document.querySelector("#codemirror"), {
@@ -120,10 +120,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
   iframe.srcdoc = srcdoc;
   iframeSandbox.srcdoc = srcdoc;
   addModeEventListeners();
-
   const sandbox = new Sandbox({iframe: iframeSandbox, codemirror: sandboxCm});
   const game = new Game({iframe: iframe, codemirror: cm});
+  addThrottledCoordinates();
 });
+
+function addThrottledCoordinates(){
+  const receiveMessage = function (event) {
+    let posX = document.querySelector('.posX');
+    let posY = document.querySelector('.posY');
+    let [x, y] = event.data;
+    posX.innerHTML = x;
+    posY.innerHTML = y;
+  };
+  let throttledHandler = myThrottle(receiveMessage, 80);
+  window.addEventListener("message", throttledHandler, true);
+}
 
 function hideGameGroup(){
   const gameGroup = document.querySelector(".editor-game-group");
