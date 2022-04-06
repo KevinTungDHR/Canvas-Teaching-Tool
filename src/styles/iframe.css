@@ -15,3 +15,7 @@ canvas {
 #solution {
   display: none;
 }
+
+#canvas {
+  z-index: 2;
+}

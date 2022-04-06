@@ -46,14 +46,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
           document.head.appendChild(setupSheet);
         </script>
+        
         <script type='module' defer>
           window.addEventListener('message', (event) => {
             const { type, value } = event.data;
            
-            if (type === 'html'){
-              document.body.innerHTML = value;
-            }
-
+          
             if (type === 'setupScript'){
               // Need to clear or else old functions leave the canvas in wrong state.
               let bg = document.querySelector("#background");
@@ -101,7 +99,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
         </script>
       </head>
       <body>
+        <button class='myButton'>Call function B</button>
+        <canvas  id='canvas' height="700px" width="845px"></canvas>
+        <canvas id='solution' height="700px" width="845px"></canvas>
+        <canvas id='background' height="700px" width="845px"></canvas>
       </body>
+      <script>
+          const canvas = document.querySelector('#canvas')
+          canvas.addEventListener('mouseover', (e)=> {
+            console.log(canvas)
+            window.parent.postMessage('CallFunctionA', '*')
+          }, false);
+          
+      </script>
     </html>
   `;
 
