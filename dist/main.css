@@ -518,8 +518,11 @@ header {
   width: 45%;
   height: 700px;
   margin: 0;
+  margin-right: 10px;
   display: block;
   font-size: 18px;
+  box-sizing: border-box;
+  border-radius: 15px;
 }
 
 .editor-game-group {

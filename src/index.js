@@ -8,7 +8,7 @@ import { mseCompare, pixelCompare } from './scripts/util';
 window.addEventListener("DOMContentLoaded", (event) => {
   const cm = CodeMirror.fromTextArea(document.querySelector("#codemirror"), {
     mode: "javascript",
-    theme: "dracula",
+    theme: "base16-light",
     tabSize: 2,
     lineWrapping: true,
     lineNumbers: true,
@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // Turn on autorefresh so that when tabs become unhidden the formatting is correct
   const sandboxCm = CodeMirror.fromTextArea(document.querySelector("#codemirror-sandbox"), {
     mode: "javascript",
-    theme: "dracula",
+    theme: "base16-light",
     autoRefresh: true,
     tabSize: 2,
     lineWrapping: true,
