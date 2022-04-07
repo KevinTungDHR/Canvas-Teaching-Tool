@@ -4,6 +4,7 @@
 
 canvas {
   position: absolute;
+
 }
 
 #canvas {
@@ -16,6 +17,9 @@ canvas {
   width: 845px;
   height: 750px;
   border: 1px solid black;
+  box-shadow: 3px 1px 5px grey;
+
+
 }
 
 #solution {

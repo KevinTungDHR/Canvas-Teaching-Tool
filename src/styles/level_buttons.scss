@@ -1,0 +1,42 @@
+.level-counter {
+  position: absolute;
+  right: 10px;
+  top: -40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+  font-size: 20px;
+}
+.level-counter span:hover {
+  display: block;
+  cursor: pointer;
+}
+
+.triangle-left,
+.triangle-right {
+  display: block;
+  cursor: pointer;
+  height: 0px;
+  width: 0px;
+  border-style: solid;
+  
+}
+
+.triangle-left:hover {
+  border-color: transparent $rosy transparent transparent;
+}
+.triangle-right:hover {
+  border-color: transparent transparent transparent $rosy;
+}
+
+.triangle-right {
+  border-color: transparent transparent transparent $dark;
+  border-width: 15px 0px 15px 20px;
+
+}
+
+.triangle-left {
+  border-color: transparent $dark transparent transparent;
+  border-width: 15px 20px 15px 0px;
+}

@@ -7,7 +7,7 @@
   top: 25px;
   left: 20px;
   width: 40px;
-  height: 40px;
+  height: 30px;
   cursor: pointer;
   z-index: 2;
 
@@ -48,6 +48,7 @@
 }
 
 .menu_list {
+  color: $backgroundDark;
   display: block;
   position: fixed;
   top: 0;
@@ -56,7 +57,7 @@
   height: 100%;
   padding: 80px 0;
   transition: .25s;
-  background-color: $dark;
+  background-color: $altDark;
   z-index: 1;
   box-shadow: 2px 0px 3px;
 

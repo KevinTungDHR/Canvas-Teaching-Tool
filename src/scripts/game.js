@@ -55,8 +55,8 @@ export default class Game{
   }
 
   addLevelSelectListeners(){
-    const backButton = document.querySelector(".back-level");
-    const nextButton = document.querySelector(".next-level");
+    const backButton = document.querySelector(".triangle-left");
+    const nextButton = document.querySelector(".triangle-right");
     backButton.addEventListener('click', this.goPreviousLevel);
     nextButton.addEventListener('click', this.goNextLevel);
   }

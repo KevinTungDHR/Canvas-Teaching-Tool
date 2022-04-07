@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
-    <title>Project Name</title>
+    <title>Can I Canvas?</title>
 </head>
 
 <body class="body-main">
@@ -33,28 +33,34 @@
       </div>
       
       <ul class="nav-personal-links">
-        <li><a href="#">GitHub</a></li>
-        <li><a href="#">LinkedIn</a></li>
+        <li>
+          <a href="https://github.com/KevinTungDHR/canvas-teaching-tool"><img src="./src/assets/github_logo.png"></a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/kevintungmedia/"><img src="./src/assets/linkedin_logo.png"></a>
+        </li>
       </ul>
     </nav>
   </header>
     <main class="main">
       <div>
-        
-        <div class="level-counter">
-          <span class="back-level">back</span>
-          <span>Levels</span>
-          <span class="next-level">next</span>
-        </div>
         <button class="mseCompare">mseCompare</button>
         <button class="pixelCompare">pixelCompare</button>
       </div>
       <div class="game-main-viewport">
         <div class="left-viewport">
+          <div class="enter">
+            <span>Enter</span>
+          </div>
           <section class="instructions"></section>
           <textarea name="" id="codemirror"></textarea>
         </div> 
         <div class="right-viewport">
+          <div class="level-counter">
+            <div class="triangle-left"></div>
+            <span>Levels</span>
+            <div class="triangle-right"></div>
+          </div>
           <iframe class="render-view" scrolling="no" frameborder="0">Sorry Iframe not supported</iframe>
           <ul class="coordinates">
             <li>X: <span class="posX"></span></li>

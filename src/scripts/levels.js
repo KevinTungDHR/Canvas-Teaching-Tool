@@ -15,7 +15,7 @@ export const levels = [
             ctx.stroke();
           }
         `, 
-      main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');\nctx.fillRect(10, 10, 150, 150);`,
+      main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');\nctx.fillStyle = '#f5c156'\nctx.fillRect(10, 10, 150, 150);`,
     },
     instructions: 'Change the x and y arguments of ctx.fillRect to position the rectangle onto the end zone',
     solution(userInput) {
@@ -47,7 +47,7 @@ export const levels = [
           ctx.stroke();
         }
       `, 
-      main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');\nctx.fillRect(160, 110, 100, 100);`,
+      main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');\nctx.fillStyle = "#DD826F"\nctx.fillRect(160, 110, 100, 100);`,
     },
     instructions: 'Adjust the width and height of the rectangle so that the edges of the rectange are between the dotted lines. Don\'t change the position!',
     solution(userInput) {
@@ -75,7 +75,7 @@ export const levels = [
             ctx.stroke();
           }
       `, 
-      main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');`,
+      main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');\nctx.fillStyle = '#e6616b';`,
     },
     instructions: 'Use the fillStyle() and fillRect() methods on the context to create a blue rectangle within the dotted zone',
     solution(userInput) {
@@ -109,13 +109,13 @@ export const levels = [
           ctx.stroke();
           ctx.closePath();
           ctx.beginPath();
-          ctx.fillStyle = "blue"
+          ctx.fillStyle = "#5cd3ad"
           ctx.fillRect(600,50,40,40);
         }
     `, 
       main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')`,
     },
-    instructions: 'Use the strokeStyle and strokeRect() to create a rectangle with red stroke and no fill within the dotted zone and not touching the blue square',
+    instructions: 'Use the strokeStyle and strokeRect() to create a rectangle with red stroke and no fill within the dotted zone and not touching the blue-green square',
     solution(userInput) {
       const colorExp = /ctx.strokeStyle\s*=\s*["']red["']/;
       if(!colorExp.test(userInput)){
