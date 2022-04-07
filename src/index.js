@@ -123,7 +123,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const sandbox = new Sandbox({iframe: iframeSandbox, codemirror: sandboxCm});
   const game = new Game({iframe: iframe, codemirror: cm});
   addThrottledCoordinates();
+  addModalListener();
 });
+
+function addModalListener(){
+  let modal = document.querySelector('.modal');
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+}
+
 
 function addThrottledCoordinates(){
   const receiveMessage = function (event) {

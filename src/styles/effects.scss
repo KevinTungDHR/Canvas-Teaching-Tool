@@ -1,5 +1,5 @@
 .shake {
-  animation: shake .2s 3
+  animation: shake .2s 3;
 }
 
 .correct {
@@ -15,5 +15,24 @@
   }
   100% {
     transform: translateX(1px) rotateZ(3deg);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn .8s;
+}
+
+@keyframes fadeIn {
+  0%{
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
   }
 }

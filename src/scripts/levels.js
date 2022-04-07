@@ -17,7 +17,7 @@ export const levels = [
         `, 
       main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');\nctx.fillStyle = '#f5c156'\nctx.fillRect(10, 10, 150, 150);`,
     },
-    instructions: 'Change the x and y arguments of ctx.fillRect to position the rectangle onto the end zone',
+    instructions: 'Change the x and y arguments of ctx.fillRect to position the rectangle into the dotted zone.\nThe four positional arguments are position-X, position-Y, width, and height.',
     solution(userInput) {
       const exp = /ctx.fillRect\((\d+)\s*,\s*(\d+)\s*,\s*150\s*,\s*150\s*\)/;
       const matches = userInput.match(exp);
@@ -49,7 +49,7 @@ export const levels = [
       `, 
       main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');\nctx.fillStyle = "#DD826F"\nctx.fillRect(160, 110, 100, 100);`,
     },
-    instructions: 'Adjust the width and height of the rectangle so that the edges of the rectange are between the dotted lines. Don\'t change the position!',
+    instructions: 'Adjust the width and height of the rectangle so that the edges of the rectangle are between the dotted lines. Don\'t change the position!',
     solution(userInput) {
       const exp = /ctx.fillRect\(\s*160\s*,\s*110\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
       const matches = userInput.match(exp);
@@ -75,9 +75,9 @@ export const levels = [
             ctx.stroke();
           }
       `, 
-      main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');\nctx.fillStyle = '#e6616b';`,
+      main: `let canvas = document.getElementById('canvas');\nlet ctx = canvas.getContext('2d');`,
     },
-    instructions: 'Use the fillStyle() and fillRect() methods on the context to create a blue rectangle within the dotted zone',
+    instructions: 'Use the fillStyle and fillRect properties on the context to create a blue rectangle within the dotted zone',
     solution(userInput) {
       const colorExp = /ctx.fillStyle\s*=\s*["']blue["']/;
       if(!colorExp.test(userInput)){
@@ -115,7 +115,7 @@ export const levels = [
     `, 
       main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')`,
     },
-    instructions: 'Use the strokeStyle and strokeRect() to create a rectangle with red stroke and no fill within the dotted zone and not touching the blue-green square',
+    instructions: 'Use the strokeStyle and strokeRect() to create a rectangle with a red stroke and no fill within the dotted zone. Make sure to not touch the blue-green square!',
     solution(userInput) {
       const colorExp = /ctx.strokeStyle\s*=\s*["']red["']/;
       if(!colorExp.test(userInput)){
@@ -153,7 +153,7 @@ export const levels = [
     `,  
       main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.fillStyle = "grey"\nctx.fillRect(0, 0, canvas.width, canvas.height)`,
     },
-    instructions: 'Cut out a rectangle from the canvas using clearRect()',
+    instructions: 'Cut out a rectangle from the canvas using clearRect. Like #fillRect, #clearRect takes an position-X, position-Y, width and height argument.',
     solution(userInput) {
       const exp = /ctx.clearRect\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/;
       const matches = userInput.match(exp);
@@ -266,7 +266,7 @@ export const levels = [
           ctx.stroke();
         }
     `,
-      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.beginPath()\nctx.arc(50, 50, 50, 0, 2 * Math.PI)\nctx.stroke()`,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.beginPath()\nctx.arc(100, 100, 50, 0, 2 * Math.PI)\nctx.stroke()`,
     },
     instructions: 'Time for circles! Circles are drawn with the arc() function and take in 5-6 arguments. The first two arguments are the x and y positions for the center of the circle. Position the circle in the zone. Use the stroke() method to draw the circle to the screen.',
     solution(userInput) {
@@ -296,7 +296,7 @@ export const levels = [
           ctx.stroke();
         }
     `,
-      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.beginPath()\nctx.arc(50, 50, 50, 0, 2 * Math.PI)\nctx.stroke()`,
+      main: `let canvas = document.getElementById('canvas')\nlet ctx = canvas.getContext('2d')\nctx.beginPath()\nctx.arc(700, 100, 50, 0, 2 * Math.PI)\nctx.stroke()`,
     },
     instructions: 'The third argument for an arc is the radius. Position the circle in the zone and make sure it fits within the final area.',
     solution(userInput) {

@@ -38,9 +38,17 @@ export default class Game{
     this.editor.prefillEditor(this.level);
     this.editor.addReadOnlyListener();
     this.addLevelSelectListeners();
+    this.loadLevelTitle()
     this.loadInstructions();
+    this.addFadeIn();
     this.addDisabledEnter();
     this.removeEnterClasses();
+  }
+
+  loadLevelTitle(){
+    const levelNumber = parseInt(this.level.currentLevel)
+    const title = document.querySelector(".level-header");
+    title.innerHTML = `Level - ${levelNumber + 1}`;
   }
 
   loadInstructions(){
@@ -51,7 +59,8 @@ export default class Game{
   completeLevel(){
     let nextLevel = this.level.currentLevel + 1;
     if (!levels[nextLevel]){
-      alert("Last level reached!");
+      let modal = document.querySelector('.modal');
+      modal.style.display = "block";
     } else {
       this.level = levels[nextLevel];
       this.loadLevel();
@@ -86,6 +95,7 @@ export default class Game{
   }
 
   loadLevel(){
+    this.removeFadeIn()
     this.resetEditorAndView();
     this.setup();
     this.view.setupView();
@@ -133,5 +143,21 @@ export default class Game{
   removeEnterClasses(){
     let enterButton = document.querySelector(".enter");
     enterButton.classList.remove('.shake', 'correct')
+  }
+
+  addFadeIn(){
+    const instructions = document.querySelector(".instructions");
+    const title = document.querySelector(".level-header");
+
+    title.classList.add('fadeIn');
+    instructions.classList.add('fadeIn');
+  }
+
+  removeFadeIn(){
+    const instructions = document.querySelector(".instructions");
+    const title = document.querySelector(".level-header");
+
+    title.classList.remove('fadeIn');
+    instructions.classList.remove('fadeIn');
   }
 }
