@@ -563,6 +563,10 @@ button {
 
 html {
   background-color: #e2d0c0;
+  background-image: url("../src/styles/seamless_grid.jpg");
+  background-size: 1000px 800px;
+  background-repeat: repeat;
+  background-blend-mode: soft-light;
 }
 
 body {
