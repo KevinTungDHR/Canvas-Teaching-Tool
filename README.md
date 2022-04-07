@@ -20,6 +20,18 @@ Level-based tutorial that focuses on adjusting a few lines of code per level (i.
 ![MainPage](MainPage.png)
 
 ![EventListener](AddEventListener.png)
+Ability to addEventListeners in the browser ide that reflect changes on the canvas.
+
+## Code Snippets ##
+
+![utilFunctions](https://user-images.githubusercontent.com/59035434/162250607-be7f094a-af5c-4f6a-9b6c-41342431c365.png)
+Creating debounce and throttle functions in order to restrict excessive client updates.
+
+![MeanSquareError](https://user-images.githubusercontent.com/59035434/162250735-4b9de035-5aa9-4bb2-a033-9d9d729f91af.png)
+We use a hidden canvas with the solution that is compared with the user's outputted canvas to calculate the mean square error. If the MSE is below a threshold the answer is considered correct.
+
+![RegExp](https://user-images.githubusercontent.com/59035434/162251139-f2c8dc99-8ced-4a3d-bdc6-195f9aa9dc06.png)
+Using RegExp and MSE to compare that the user's given answer and the solution match up.
 
 ## Functionalities and MVPs ##
 
@@ -48,12 +60,6 @@ In **Can I Canvas?**, users will be able to:
 
 ![wireframe](wireframe.png)
 
-  * Nav links will link to sandbox mode, tutorial mode, this GitHub repo and my LinkedIn
-  * Instructions will provide directions for each level
-  * Level select will provide arrow buttons to go to previous and next levels as well as a dropdown menu to select a specific level
-  * Code editor to write JavaScript that will affect the canvas 2d elements on the
-  * Canvas window that will be a direct correlation to the javascript in the code editor
-  * Sliders that affect the 2D elements and a toggle button to collapse the slider window and expand the code editor.
-  * Code editor will also supply feedback on errors in code.
+Original wireframe created during the planning stage.
 
 
