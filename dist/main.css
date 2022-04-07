@@ -863,3 +863,23 @@ canvas {
   border-color: transparent #76575D transparent transparent;
   border-width: 15px 20px 15px 0px;
 }
+
+.shake {
+  animation: shake 0.2s 3;
+}
+
+.correct {
+  background-color: #F69F83;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0px) rotateZ(0);
+  }
+  50% {
+    transform: translateX(-1px) rotateZ(-3deg);
+  }
+  100% {
+    transform: translateX(1px) rotateZ(3deg);
+  }
+}

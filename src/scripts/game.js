@@ -12,6 +12,7 @@ export default class Game{
     this.bindHandlers();
     this.setup();
     this.addCheckCompletionListener();
+    this.addEnterListener()
   }
 
   getSavedlevel(){
@@ -29,6 +30,7 @@ export default class Game{
     this.checkCompletion = debounce(this.checkCompletion.bind(this), 1000);
     this.goPreviousLevel = this.goPreviousLevel.bind(this);
     this.goNextLevel = this.goNextLevel.bind(this);
+    this.completeLevel = this.completeLevel.bind(this);
   }
 
   setup(){
@@ -37,6 +39,8 @@ export default class Game{
     this.editor.addReadOnlyListener();
     this.addLevelSelectListeners();
     this.loadInstructions();
+    this.addDisabledEnter();
+    this.removeEnterClasses();
   }
 
   loadInstructions(){
@@ -96,13 +100,38 @@ export default class Game{
   }
 
   addCheckCompletionListener(){
-    this.editor.cm.on("keyup", this.checkCompletion);
+    this.editor.cm.on('keypress', this.checkCompletion);
+  }
+
+  addDisabledEnter(){
+    let enterButton = document.querySelector(".enter");
+    enterButton.style.pointerEvents = "none";
+  }
+
+  addEnterListener(){
+    let enterButton = document.querySelector(".enter");
+    enterButton.addEventListener("click", (e) =>{
+      this.completeLevel();
+    });
   }
 
   checkCompletion(){
     const userInput = this.editor.cm.getValue();
+
     if (this.level.solution(userInput)){
-      this.completeLevel();
+      let enterButton = document.querySelector(".enter");
+      enterButton.style.pointerEvents = "auto";
+      this.enterButtonShake();
     }
+  }
+
+  enterButtonShake(){
+    let enterButton = document.querySelector(".enter");
+    enterButton.classList.add('shake', 'correct')
+  }
+
+  removeEnterClasses(){
+    let enterButton = document.querySelector(".enter");
+    enterButton.classList.remove('.shake', 'correct')
   }
 }
