@@ -11,8 +11,9 @@ export default class Game{
     this.editor = new Editor({editor: codemirror, view: this.view, game: this});
     this.bindHandlers();
     this.setup();
+    this.createLevelMenu();
     this.addCheckCompletionListener();
-    this.addEnterListener()
+    this.addEnterListener();
   }
 
   getSavedlevel(){
@@ -28,6 +29,7 @@ export default class Game{
   bindHandlers(){
     this.setup = this.setup.bind(this);
     this.checkCompletion = debounce(this.checkCompletion.bind(this), 1000);
+    this.goToLevel = this.goToLevel.bind(this);
     this.goPreviousLevel = this.goPreviousLevel.bind(this);
     this.goNextLevel = this.goNextLevel.bind(this);
     this.completeLevel = this.completeLevel.bind(this);
@@ -38,7 +40,7 @@ export default class Game{
     this.editor.prefillEditor(this.level);
     this.editor.addReadOnlyListener();
     this.addLevelSelectListeners();
-    this.loadLevelTitle()
+    this.loadLevelTitle();
     this.loadInstructions();
     this.addFadeIn();
     this.addDisabledEnter();
@@ -54,6 +56,23 @@ export default class Game{
   loadInstructions(){
     const instructionsElement = document.querySelector(".instructions");
     instructionsElement.innerHTML = this.level.instructions;
+  }
+
+  createLevelMenu(){
+    const dropdown = document.querySelector(".dropdown-content");
+    for(let i = 0; i < levels.length; i++){
+      let li = document.createElement('li');
+      li.innerHTML = i + 1;
+      li.setAttribute('level', i);
+      li.addEventListener('click', this.goToLevel);
+      dropdown.append(li);
+    }
+  }
+
+  goToLevel(e){
+    let lvlString = e.target.getAttribute('level');
+    this.level = levels[parseInt(lvlString)];
+    this.loadLevel();
   }
 
   completeLevel(){
@@ -95,7 +114,7 @@ export default class Game{
   }
 
   loadLevel(){
-    this.removeFadeIn()
+    this.removeFadeIn();
     this.resetEditorAndView();
     this.setup();
     this.view.setupView();
