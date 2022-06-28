@@ -148,39 +148,8 @@ function addThrottledCoordinates(){
   window.addEventListener("message", throttledHandler, true);
 }
 
-function hideGameGroup(){
-  const gameGroup = document.querySelector(".game-main-viewport");
-  gameGroup.classList.add("hidden");
-}
-
-function hideSandboxGroup(){
-  const sandboxGroup = document.querySelector(".sandbox-group");
-  sandboxGroup.classList.add("hidden");
-}
-
-function showGameGroup(){
-  const gameGroup = document.querySelector(".game-main-viewport");
-  gameGroup.classList.remove("hidden");
-}
-
-function showSandboxGroup(){
-  const sandboxGroup = document.querySelector(".sandbox-group");
-  sandboxGroup.classList.remove("hidden");
-}
 
 function addModeEventListeners(){
-  const sandboxButton = document.getElementById("sandbox-tab");
-  const gameButton = document.getElementById("game-tab");
-  sandboxButton.addEventListener('click', (e)=>{
-    hideGameGroup();
-    showSandboxGroup();
-  });
-
-  gameButton.addEventListener('click', (e)=>{
-    showGameGroup();
-    hideSandboxGroup();
-  });
-
   const mseCompareButton = document.querySelector('.mseCompare');
   mseCompareButton.addEventListener('click', () => {
     console.log(mseCompare());
