@@ -230,8 +230,8 @@ export const levels = [
         let y = parseInt(arr[2]);
         let width = parseInt(arr[3]);
         let height = parseInt(arr[4]);
-        console.log(arr);
-        console.log(x,y,width,height);
+        // console.log(arr);
+        // console.log(x,y,width,height);
         if (!(x >= 500 && y >= 100 && x + width <= 700 && y + height <= 300)) {
           return false;
         }

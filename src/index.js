@@ -2,7 +2,6 @@ import CodeMirror from 'codemirror';
 import "codemirror/mode/javascript/javascript.js";
 import "codemirror/addon/display/autorefresh.js";
 import Game from './scripts/game';
-import Sandbox from './scripts/sandbox';
 import { mseCompare, myThrottle, pixelCompare } from './scripts/util';
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -15,18 +14,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     autoRefresh: true,
   });
 
-  // Turn on autorefresh so that when tabs become unhidden the formatting is correct
-  const sandboxCm = CodeMirror.fromTextArea(document.querySelector("#codemirror-sandbox"), {
-    mode: "javascript",
-    theme: "base16-light",
-    autoRefresh: true,
-    tabSize: 2,
-    lineWrapping: true,
-    lineNumbers: true,
-  });
-
-
-  const iframeSandbox = document.querySelector(".render-view-sandbox");
   const iframe = document.querySelector(".render-view");
 
   const srcdoc = 
@@ -118,9 +105,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   `;
 
   iframe.srcdoc = srcdoc;
-  iframeSandbox.srcdoc = srcdoc;
   addModeEventListeners();
-  const sandbox = new Sandbox({iframe: iframeSandbox, codemirror: sandboxCm});
   const game = new Game({iframe: iframe, codemirror: cm});
   addThrottledCoordinates();
   addModalListener();
@@ -152,12 +137,12 @@ function addThrottledCoordinates(){
 function addModeEventListeners(){
   const mseCompareButton = document.querySelector('.mseCompare');
   mseCompareButton.addEventListener('click', () => {
-    console.log(mseCompare());
+    // console.log(mseCompare());
   });
 
   const pixelCompareButton = document.querySelector('.pixelCompare');
   pixelCompareButton.addEventListener('click', () => {
-    console.log(pixelCompare());
+    // console.log(pixelCompare());
   });
 }
 

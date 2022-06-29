@@ -829,6 +829,7 @@ canvas {
 }
 
 .level-counter {
+  display: block;
   position: absolute;
   right: 10px;
   top: -40px;
@@ -840,7 +841,6 @@ canvas {
 }
 
 .level-counter span:hover {
-  display: block;
   cursor: pointer;
 }
 
@@ -869,6 +869,10 @@ canvas {
 .triangle-left {
   border-color: transparent #76575D transparent transparent;
   border-width: 15px 20px 15px 0px;
+}
+
+.dropdown span {
+  padding: 0.5rem 0;
 }
 
 .dropdown-content {

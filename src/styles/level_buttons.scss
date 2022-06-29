@@ -1,4 +1,5 @@
 .level-counter {
+  display: block;
   position: absolute;
   right: 10px;
   top: -40px;
@@ -9,7 +10,6 @@
   font-size: 20px;
 }
 .level-counter span:hover {
-  display: block;
   cursor: pointer;
 }
 
@@ -38,6 +38,10 @@
 .triangle-left {
   border-color: transparent $dark transparent transparent;
   border-width: 15px 20px 15px 0px;
+}
+
+.dropdown span {
+  padding: 0.5rem 0;
 }
 
 .dropdown-content {
