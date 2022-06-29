@@ -1,7 +1,7 @@
 # Can I Canvas?
 
 ## Description ##
-[Can I Canvas?](https://kevintungdhr.github.io/canvas-teaching-tool/) is designed for people to learn how to use the Canvas API / library as well as give users a place test out their ideas in realtime. This app contains two key features: a sandbox environment (in progress) with a built-in browser code editor that updates the canvas elements in real time as well as a tutorial for teaching basic canvas concepts. 
+[Can I Canvas?](https://kevintungdhr.github.io/canvas-teaching-tool/) is designed for people to learn how to use the Canvas API / library as well as give users a place test out their ideas in realtime. This app contains a built-in browser code editor that updates the canvas elements in real time as well as a tutorial for teaching basic canvas concepts. 
 
 ### Tutorial ###
 Level-based tutorial that focuses on adjusting a few lines of code per level (i.e, change the context.rect(args) to place the rectangle within the goal zone). Each level will have example code as well as instructions on what the user should be trying to accomplish (i.e, move the drawn element into the box or rotate it 30 degrees). Each level will become progressively more difficult to focus on more and more advanced topics. 
@@ -44,9 +44,6 @@ In **Can I Canvas?**, users will be able to:
   * Learn Canvas!
 
 ## Future Considerations ##
-  * Sandbox mode that will:
-    * Be able to interact with drawn canvas elements through UI inputs such as sliders or input boxes
-    * Show updates in the written code when interacing with the UI
   * Give better feedback when the code they write is incorrect
   * Hover over elements to provide tool tips
   * Hints to problems
@@ -59,7 +56,5 @@ In **Can I Canvas?**, users will be able to:
 ## Wireframes ##
 
 ![wireframe](wireframe.png)
-
-Original wireframe created during the planning stage.
 
 
