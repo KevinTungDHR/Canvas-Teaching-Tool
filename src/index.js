@@ -112,12 +112,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 
 function addModalListener(){
-  let modal = document.querySelector('.modal');
+  let endModal = document.querySelector('.end-modal');
   window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+    if (event.target == endModal) {
+      endModal.style.display = "none";
     }
   }
+
+  let introModal = document.querySelector('.intro-modal');
+  let close = document.querySelector('.intro-modal-close');
+
+  window.onclick = function(event) {
+    if (event.target == introModal || event.target == close) {
+      introModal.style.display = "none";
+    }
+  }
+
+
 }
 
 
@@ -126,8 +137,8 @@ function addThrottledCoordinates(){
     let posX = document.querySelector('.posX');
     let posY = document.querySelector('.posY');
     let [x, y] = event.data;
-    posX.innerHTML = x;
-    posY.innerHTML = y;
+    posX.innerHTML = x === undefined ? '' : x;
+    posY.innerHTML = y === undefined ?  '' : y;
   };
   let throttledHandler = myThrottle(receiveMessage, 80);
   window.addEventListener("message", throttledHandler, true);

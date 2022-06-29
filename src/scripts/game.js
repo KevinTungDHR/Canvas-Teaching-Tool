@@ -33,6 +33,8 @@ export default class Game{
     this.goPreviousLevel = this.goPreviousLevel.bind(this);
     this.goNextLevel = this.goNextLevel.bind(this);
     this.completeLevel = this.completeLevel.bind(this);
+    this.completeLevelTitle = this.completeLevelTitle.bind(this);
+    this.introModal  = this.introModal.bind(this);
   }
 
   setup(){
@@ -45,6 +47,7 @@ export default class Game{
     this.addFadeIn();
     this.addDisabledEnter();
     this.removeEnterClasses();
+    this.introModal();
   }
 
   loadLevelTitle(){
@@ -78,12 +81,25 @@ export default class Game{
   completeLevel(){
     let nextLevel = this.level.currentLevel + 1;
     if (!levels[nextLevel]){
-      let modal = document.querySelector('.modal');
+      let modal = document.querySelector('.end-modal');
       modal.style.display = "block";
     } else {
       this.level = levels[nextLevel];
       this.loadLevel();
     }   
+  }
+
+  introModal(){
+    if (this.level.currentLevel === 0){
+      let modal = document.querySelector('.intro-modal');
+      modal.style.display = "block";
+    } 
+  }
+
+  completeLevelTitle() {
+    const levelNumber = parseInt(this.level.currentLevel)
+    const title = document.querySelector(".level-header");
+    title.innerHTML = `Level - ${levelNumber + 1} - Complete!`;
   }
 
   addLevelSelectListeners(){
@@ -151,6 +167,7 @@ export default class Game{
       let enterButton = document.querySelector(".enter");
       enterButton.style.pointerEvents = "auto";
       this.enterButtonShake();
+      this.completeLevelTitle();
     }
   }
 

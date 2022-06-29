@@ -11,9 +11,50 @@
 
 .modal-content {
   background-color: $altDark;
-  margin: 20% auto;
+  margin: 15% auto;
   padding: 30px;
   border: 1px solid $dark;
   width: 50%;
   border-radius: 15px;
+}
+
+.intro-modal-content {
+  background-color: $altDark;
+  margin: 15% auto;
+  padding: 30px;
+  border: 1px solid $dark;
+  width: 50%;
+  border-radius: 15px;
+}
+
+.intro-modal-content h2 {
+  font-size: 40px;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.intro-modal-content > p {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.intro-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 22px;
+}
+
+.intro-modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.intro-modal-close:hover {
+  cursor: pointer;
+  background-color: rgba(199, 199, 199, 0.596);
+  border-radius: 5px;
+
 }
